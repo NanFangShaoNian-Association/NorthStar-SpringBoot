@@ -1,0 +1,14 @@
+server:
+  port: 10001
+
+spring:
+  # 数据库相关
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver              # mysql驱动包
+    url: jdbc:mysql://localhost:3306/pet_platform?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false
+    username: xx
+    password: xx
+    type: com.alibaba.druid.pool.DruidDataSource             # 当前数据源操作类型
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

@@ -1,0 +1,18 @@
+package com.nfsn.service.impl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.nfsn.mapper.MerchantCommentMapper;
+import com.nfsn.model.entity.MerchantComment;
+import com.nfsn.service.MerchantCommentService;
+import org.springframework.stereotype.Service;
+
+/**
+* @author Tuanzi
+* @description 针对表【merchant_comment】的数据库操作Service实现
+* @createDate 2022-10-30 21:44:06
+*/
+@Service
+public class MerchantCommentServiceImpl extends ServiceImpl<MerchantCommentMapper, MerchantComment>
+implements MerchantCommentService{
+
+}

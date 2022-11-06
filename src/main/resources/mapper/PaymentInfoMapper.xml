@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.PaymentInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.PaymentInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="order_info_id" column="order_info_id" jdbcType="INTEGER"/>
+            <result property="transaction_no" column="transaction_no" jdbcType="VARCHAR"/>
+            <result property="payment_type" column="payment_type" jdbcType="VARCHAR"/>
+            <result property="trade_type" column="trade_type" jdbcType="VARCHAR"/>
+            <result property="trade_state" column="trade_state" jdbcType="VARCHAR"/>
+            <result property="payer_total" column="payer_total" jdbcType="INTEGER"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_info_id,transaction_no,
+        payment_type,trade_type,trade_state,
+        payer_total,content,create_time,
+        update_time
+    </sql>
+</mapper>

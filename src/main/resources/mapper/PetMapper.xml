@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.PetMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Pet">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="masterId" column="master_id" jdbcType="INTEGER"/>
+            <result property="petVarietyId" column="pet_variety_id" jdbcType="INTEGER"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="CHAR"/>
+            <result property="type" column="type" jdbcType="CHAR"/>
+            <result property="sterilizationStatus" column="sterilization_status" jdbcType="VARCHAR"/>
+            <result property="insectRepellentStatus" column="insect_repellent_status" jdbcType="VARCHAR"/>
+            <result property="vaccineStatus" column="vaccine_status" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,master_id,pet_variety_id,
+        nick_name,birthday,avatar,
+        gender,type,sterilization_status,
+        insect_repellent_status,vaccine_status,create_time
+    </sql>
+</mapper>

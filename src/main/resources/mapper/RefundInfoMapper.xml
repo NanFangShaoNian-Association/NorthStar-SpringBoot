@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.RefundInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.RefundInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="order_info_id" column="order_info_id" jdbcType="INTEGER"/>
+            <result property="refund_order_info_id" column="refund_order_info_id" jdbcType="INTEGER"/>
+            <result property="refund_no" column="refund_no" jdbcType="VARCHAR"/>
+            <result property="total_fee" column="total_fee" jdbcType="INTEGER"/>
+            <result property="refund" column="refund" jdbcType="INTEGER"/>
+            <result property="reason" column="reason" jdbcType="VARCHAR"/>
+            <result property="refund_status" column="refund_status" jdbcType="VARCHAR"/>
+            <result property="content_return" column="content_return" jdbcType="VARCHAR"/>
+            <result property="content_notify" column="content_notify" jdbcType="VARCHAR"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_info_id,refund_order_info_id,
+        refund_no,total_fee,refund,
+        reason,refund_status,content_return,
+        content_notify,create_time,update_time
+    </sql>
+</mapper>

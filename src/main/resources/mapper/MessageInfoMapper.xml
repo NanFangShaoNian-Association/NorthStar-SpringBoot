@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.MessageInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MessageInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="sender_id" column="sender_id" jdbcType="INTEGER"/>
+            <result property="receiver_id" column="receiver_id" jdbcType="INTEGER"/>
+            <result property="content_type" column="content_type" jdbcType="TINYINT"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+            <result property="is_read" column="is_read" jdbcType="TINYINT"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,sender_id,receiver_id,
+        content_type,content,deleted,
+        is_read,create_time
+    </sql>
+</mapper>

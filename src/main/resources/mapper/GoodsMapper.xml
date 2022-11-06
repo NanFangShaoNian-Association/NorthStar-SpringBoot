@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.GoodsMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Goods">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="merchant_id" column="merchant_id" jdbcType="INTEGER"/>
+            <result property="merchant_type_id" column="merchant_type_id" jdbcType="INTEGER"/>
+            <result property="merchant_info_id" column="merchant_info_id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="introducation" column="introducation" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+            <result property="goods_stocks" column="goods_stocks" jdbcType="INTEGER"/>
+            <result property="total_quantity" column="total_quantity" jdbcType="INTEGER"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,merchant_id ,merchant_type_id,
+        merchant_info_id,title,introducation,
+        price,goods_stocks,total_quantity,
+        create_time,update_time
+    </sql>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfsn.mapper.OrderInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.nfsn.model.entity.OrderInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+            <result property="goods_id" column="goods_id" jdbcType="INTEGER"/>
+            <result property="merchant_id" column="merchant_id" jdbcType="INTEGER"/>
+            <result property="ship_address_id" column="ship_address_id" jdbcType="INTEGER"/>
+            <result property="order_no" column="order_no" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="total_fee" column="total_fee" jdbcType="INTEGER"/>
+            <result property="code_url" column="code_url" jdbcType="VARCHAR"/>
+            <result property="order_status" column="order_status" jdbcType="VARCHAR"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,goods_id,
+        merchant_id,ship_address_id,order_no,
+        title,total_fee,code_url,
+        order_status,create_time,update_time
+    </sql>
+</mapper>
