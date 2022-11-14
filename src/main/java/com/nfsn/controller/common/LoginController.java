@@ -1,5 +1,6 @@
 package com.nfsn.controller.common;
 
+import com.nfsn.anno.NoNeedLogin;
 import com.nfsn.model.dto.LoginRequest;
 import com.nfsn.model.vo.LoginVO;
 import io.swagger.annotations.Api;
@@ -20,6 +21,7 @@ public class LoginController {
     //获取验证码
     @ApiOperation("获取验证码")
     @GetMapping("/getVerifyCode/{phone}")
+    @NoNeedLogin//不需要登陆验证的方法加上该注解
     public LoginVO getVerifyCode(@PathVariable("phone") String phone) {
         return null;
     }
@@ -27,6 +29,7 @@ public class LoginController {
     //用户手机号登录
     @ApiOperation("用户手机号登录")
     @PostMapping("/user/login")
+    @NoNeedLogin
     public LoginVO userLoginByPhone(@RequestBody LoginRequest loginRequest) {
         return null;
     }
@@ -34,6 +37,7 @@ public class LoginController {
     //用户微信授权登录
     @ApiOperation("用户微信授权登录")
     @PostMapping("/user/login/wx")
+    @NoNeedLogin
     public LoginVO userLoginByWx(@RequestBody LoginRequest loginRequest) {
         return null;
     }
@@ -41,6 +45,7 @@ public class LoginController {
     //用户QQ授权登录
     @ApiOperation("用户QQ授权登录")
     @PostMapping("/user/login/qq")
+    @NoNeedLogin
     public LoginVO userLoginByQQ(@RequestBody LoginRequest loginRequest) {
         return null;
     }
@@ -48,6 +53,7 @@ public class LoginController {
     //商家账号密码登录
     @ApiOperation("商家账号密码登录")
     @PostMapping("/merchant/login")
+    @NoNeedLogin
     public LoginVO merchantLogin(@RequestBody LoginRequest loginRequest) {
         return null;
     }
@@ -55,6 +61,7 @@ public class LoginController {
     //平台管理员账号密码登录
     @ApiOperation("平台管理员账号密码登录")
     @PostMapping("/admin/login")
+    @NoNeedLogin
     public LoginVO platformAdministratorLogin(@RequestBody LoginRequest loginRequest) {
         return null;
     }
