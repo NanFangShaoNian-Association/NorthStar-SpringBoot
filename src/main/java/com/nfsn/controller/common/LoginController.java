@@ -20,6 +20,9 @@ public class LoginController {
 
     //获取验证码
     @ApiOperation("获取验证码")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(paramType = "query", name = "phone", value = "用户手机号", dataType = "String", required = true)
+//    })
     @GetMapping("/getVerifyCode/{phone}")
     @NoNeedLogin//不需要登陆验证的方法加上该注解
     public LoginVO getVerifyCode(@PathVariable("phone") String phone) {

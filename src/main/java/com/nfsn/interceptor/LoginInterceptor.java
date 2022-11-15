@@ -17,6 +17,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        System.out.println("LoginInterceptor已拦截");
         //是不是映射到方法上
         boolean isHandlerMethod = handler instanceof HandlerMethod;
         if(!isHandlerMethod){
@@ -29,6 +30,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 //            System.out.println("无需登录");
             return true;
         }
+
+//        ((HandlerMethod) handler).getMethodAnnotation(BasicErrorController.class)!=null;
         //需要登录验证
         String token = request.getHeader("Authorization");
 

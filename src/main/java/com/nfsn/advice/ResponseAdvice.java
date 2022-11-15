@@ -12,7 +12,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = {"com.nfsn.controller"})
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     @Autowired
     private ObjectMapper objectMapper;

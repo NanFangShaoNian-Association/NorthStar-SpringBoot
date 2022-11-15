@@ -16,7 +16,9 @@ public enum ResultCode {
     USER_NOT_EXIST(2004,"用户不存在"),
     USER_HAS_EXISTED(2005,"用户已存在"),
     USER_TOKEN_IS_INVALID(2006,"用户token无效"),
-    USER_TOKEN_IS_BLANK(2007,"用户token为空");
+    USER_TOKEN_IS_BLANK(2007,"用户token为空"),
+    /*服务器内部错误*/
+    INTERNAL_ERROR(5001,"服务器内部错误");
 
     /**
      * 状态码
