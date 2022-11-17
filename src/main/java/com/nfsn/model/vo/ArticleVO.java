@@ -66,4 +66,15 @@ public class ArticleVO implements Serializable {
     @ApiModelProperty("评论数")
     private Integer commentCount;
 
+    /**
+     * 点赞数(默认0)
+     */
+    @ApiModelProperty("点赞数")
+    private Integer likeCount;
+
+    /**
+     * 收藏数(默认0)
+     */
+    @ApiModelProperty("收藏数")
+    private Integer collectionCount;
 }

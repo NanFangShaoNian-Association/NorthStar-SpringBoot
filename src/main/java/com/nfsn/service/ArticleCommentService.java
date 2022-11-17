@@ -3,6 +3,8 @@ package com.nfsn.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.ArticleComment;
 
+import java.util.List;
+
 /**
 * @author Tuanzi
 * @description 针对表【article_comment】的数据库操作Service
@@ -10,4 +12,11 @@ import com.nfsn.model.entity.ArticleComment;
 */
 public interface ArticleCommentService extends IService<ArticleComment> {
 
+    /**
+     * 根据文章id查询该文章对应的评论
+     *
+     * @param articleId 文章id
+     * @return 评论列表
+     */
+    List<ArticleComment> listByArticleId(Integer articleId);
 }

@@ -1,10 +1,13 @@
 package com.nfsn.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.ArticleMapper;
 import com.nfsn.model.entity.Article;
 import com.nfsn.service.ArticleService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -15,6 +18,16 @@ import org.springframework.stereotype.Service;
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
     implements ArticleService {
 
+    /**
+     * 根据用户id查询文章列表
+     *
+     * @param id 用户id
+     * @return 文章列表
+     */
+    @Override
+    public List<Article> listByUserId(Integer id) {
+        return this.list(new LambdaQueryWrapper<Article>().eq(Article::getUserId, id));
+    }
 }
 
 
