@@ -1,7 +1,7 @@
 package com.nfsn.interceptor;
 
 import com.nfsn.anno.NoNeedLogin;
-import com.nfsn.common.ResultCode;
+import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserLoginException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         //不需要登录的注解
-        boolean isNoNeedLogin= ((HandlerMethod) handler).getMethodAnnotation(NoNeedLogin.class)!=null;
+        boolean isNoNeedLogin = ((HandlerMethod) handler).getMethodAnnotation(NoNeedLogin.class)!=null;
         if(isNoNeedLogin){
 //            System.out.println("无需登录");
             return true;

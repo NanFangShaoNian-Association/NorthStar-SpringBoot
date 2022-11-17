@@ -1,6 +1,6 @@
 package com.nfsn.exception;
 
-import com.nfsn.common.ResultCode;
+import com.nfsn.constants.ResultCode;
 import lombok.Data;
 
 /**
