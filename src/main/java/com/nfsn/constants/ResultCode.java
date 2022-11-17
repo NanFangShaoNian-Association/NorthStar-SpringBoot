@@ -1,4 +1,4 @@
-package com.nfsn.common;
+package com.nfsn.constants;
 
 //状态码枚举
 public enum ResultCode {

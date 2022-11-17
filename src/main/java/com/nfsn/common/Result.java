@@ -1,5 +1,6 @@
 package com.nfsn.common;
 
+import com.nfsn.constants.ResultCode;
 import lombok.Data;
 
 import java.io.Serializable;

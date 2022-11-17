@@ -1,11 +1,19 @@
 package com.nfsn.controller.common;
 
 import com.nfsn.anno.NoNeedLogin;
+import com.nfsn.constants.ResultCode;
+import com.nfsn.exception.UserLoginException;
 import com.nfsn.model.dto.LoginRequest;
 import com.nfsn.model.vo.LoginVO;
+import com.nfsn.service.impl.LoginServiceImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @ClassName: LoginController
@@ -17,24 +25,42 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class LoginController {
+    @Resource(name = "loginService")
+    private LoginServiceImpl loginService;
 
     //获取验证码
     @ApiOperation("获取验证码")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(paramType = "query", name = "phone", value = "用户手机号", dataType = "String", required = true)
-//    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "phone", value = "用户手机号", dataType = "String", required = true)
+    })
     @GetMapping("/getVerifyCode/{phone}")
     @NoNeedLogin//不需要登陆验证的方法加上该注解
-    public LoginVO getVerifyCode(@PathVariable("phone") String phone) {
-        return null;
+    public void getVerifyCode(@PathVariable("phone") String phone) {
+        //校验非空
+        if (!StringUtils.hasLength(phone)) {
+            throw new UserLoginException(ResultCode.PARAM_IS_BLANK);
+        }
+
+        //逻辑判断
+        loginService.getVerifyCode(phone);
     }
 
     //用户手机号登录
-    @ApiOperation("用户手机号登录")
+    @ApiOperation("用户手机号登录(不需要密码登录)")
     @PostMapping("/user/login")
     @NoNeedLogin
     public LoginVO userLoginByPhone(@RequestBody LoginRequest loginRequest) {
-        return null;
+        //校验必要参数非空
+        if (!StringUtils.hasText(loginRequest.getPhone())&&
+                !StringUtils.hasText(loginRequest.getVerifyCode())&&
+                !(loginRequest.getRoleId() == 0)) {
+            throw new UserLoginException(ResultCode.PARAM_IS_BLANK);
+        }
+
+        //逻辑判断
+        LoginVO loginVO = loginService.userLoginByPhone(loginRequest);
+
+        return loginVO;
     }
 
     //用户微信授权登录
