@@ -24,10 +24,10 @@ public class LoginVO implements Serializable{
     private Integer id;
 
     /**
-     * 验证码
+     * token
      */
-    @ApiModelProperty("验证码——仅用于获取验证码时")
-    private String verifyCode;
+    @ApiModelProperty("用户登录令牌")
+    private String token;
 
     /**
      * 角色（用户手机号0，商家3，平台管理员4），默认为0

@@ -1,10 +1,13 @@
 package com.nfsn.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.ArticleCommentMapper;
 import com.nfsn.model.entity.ArticleComment;
 import com.nfsn.service.ArticleCommentService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -15,4 +18,14 @@ import org.springframework.stereotype.Service;
 public class ArticleCommentServiceImpl extends ServiceImpl<ArticleCommentMapper, ArticleComment>
 implements ArticleCommentService{
 
+    /**
+     * 根据文章id查询该文章对应的评论
+     *
+     * @param articleId 文章id
+     * @return 评论列表
+     */
+    @Override
+    public List<ArticleComment> listByArticleId(Integer articleId) {
+        return this.list(new LambdaQueryWrapper<ArticleComment>().eq(ArticleComment::getArticleId, articleId));
+    }
 }

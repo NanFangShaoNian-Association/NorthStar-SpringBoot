@@ -17,6 +17,8 @@ public enum ResultCode {
     USER_HAS_EXISTED(2005,"用户已存在"),
     USER_TOKEN_IS_INVALID(2006,"用户token无效"),
     USER_TOKEN_IS_BLANK(2007,"用户token为空"),
+    USER_VERIFY_ERROR(2008,"验证码校验失败，请重新获取"),
+    USER_ARTICLE_PUBLISH_FAIL(2009,"用户文章发布失败，请检查是否含有违规信息"),
     /*服务器内部错误*/
     INTERNAL_ERROR(5001,"服务器内部错误");
 

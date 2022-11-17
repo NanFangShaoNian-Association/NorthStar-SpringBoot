@@ -1,19 +1,25 @@
 package com.nfsn.service.impl;
 
+import cn.hutool.core.map.MapUtil;
+import com.nfsn.common.RedisData;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserLoginException;
 import com.nfsn.model.dto.LoginRequest;
+import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.LoginVO;
+import com.nfsn.service.UserService;
 import com.nfsn.utils.CacheClient;
 import com.nfsn.utils.PhoneRegexUtils;
+import com.nfsn.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static com.nfsn.constants.RedisConstants.LOGIN_CODE_KEY;
-import static com.nfsn.constants.RedisConstants.LOGIN_CODE_TTL;
+import static com.nfsn.constants.RedisConstants.*;
 
 /**
  * @ClassName: LoginServiceImpl
@@ -27,6 +33,9 @@ public class LoginServiceImpl {
 
     @Resource
     private CacheClient cacheClient;
+
+    @Resource
+    private UserService userService;
 
     /**
      * 根据手机号获取验证码
@@ -57,11 +66,36 @@ public class LoginServiceImpl {
      */
     public LoginVO userLoginByPhone(LoginRequest loginRequest) {
         //校验验证码
-        String verifyCode = cacheClient.queryWithPassThrough(LOGIN_CODE_KEY, loginRequest.getPhone(), String.class,
-                s -> null, LOGIN_CODE_TTL, TimeUnit.MINUTES);
+        String verifyCode = (String) cacheClient.queryWithPassThrough(LOGIN_CODE_KEY, loginRequest.getPhone(), RedisData.class,
+                s -> null, LOGIN_CODE_TTL, TimeUnit.MINUTES).getData();
 
+        //校验验证码是否相等
+        if (!StringUtils.hasText(loginRequest.getVerifyCode())||
+                !StringUtils.hasText(verifyCode)||
+                !verifyCode.equalsIgnoreCase(loginRequest.getVerifyCode())){
+            throw new UserLoginException(ResultCode.USER_VERIFY_ERROR);
+        }
 
-        return null;
+        //校验用户手机号是否存在
+        User user = userService.getUserByPhone(loginRequest.getPhone(), loginRequest.getLoginTime());
+
+        //生成登录token
+        Map<String, Object> map = MapUtil.of("role", "user");
+        String token = TokenUtil.createJwtToken(String.valueOf(user.getId()), user.getUserName(), map);
+//        String token = "token";
+
+        //存入redis
+        //存储36000s=10小时
+        cacheClient.setWithLogicalExpire(LOGIN_USER_KEY+loginRequest.getPhone(),token,LOGIN_USER_TTL, TimeUnit.SECONDS);
+        log.info("目标手机号：{}，token：{}存储成功",loginRequest.getPhone(),token);
+
+        //封装token返回
+        LoginVO loginVO = new LoginVO();
+        loginVO.setId(user.getId());
+        loginVO.setToken(token);
+        loginVO.setRoleId(0);
+
+        return loginVO;
     }
 
 }

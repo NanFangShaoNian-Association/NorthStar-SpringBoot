@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,12 +20,6 @@ public class AddArticleRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
-     */
-    @ApiModelProperty("用户ID")
-    private Integer userId;
-
-    /**
      * 图片列表（1-6张）
      */
     @ApiModelProperty("图片列表（1-6张）")
@@ -35,5 +30,18 @@ public class AddArticleRequest implements Serializable {
      */
     @ApiModelProperty("内容")
     private String articleContent;
+
+    /**
+     * 发表时间
+     */
+    @ApiModelProperty("发表时间")
+    private Date createTime;
+
+    /**
+     * 封面
+     */
+    @ApiModelProperty("封面")
+    private String coverUrl;
+
 
 }
