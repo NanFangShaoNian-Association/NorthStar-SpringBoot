@@ -10,4 +10,19 @@ import com.nfsn.model.entity.ArticleCollection;
 */
 public interface ArticleCollectionService extends IService<ArticleCollection> {
 
+    /**
+     * 收藏文章
+     *
+     * @param id 收藏用户的id
+     * @param articleId 文章id
+     */
+    void collectionArticle(Integer id, Integer articleId);
+
+    /**
+     * 删除收藏的文章
+     *
+     * @param id 收藏用户的id
+     * @param articleId 文章id
+     */
+    void deleteCollectionArticle(Integer id, Integer articleId);
 }
