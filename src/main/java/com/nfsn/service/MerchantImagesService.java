@@ -3,6 +3,8 @@ package com.nfsn.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.MerchantImages;
 
+import java.util.List;
+
 
 /**
 * @author Tuanzi

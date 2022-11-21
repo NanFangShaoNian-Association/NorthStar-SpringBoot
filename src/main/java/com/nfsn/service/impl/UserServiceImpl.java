@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.UserMapper;
 import com.nfsn.model.entity.User;
+import com.nfsn.model.entity.Video;
 import com.nfsn.service.UserService;
 import com.nfsn.utils.RandomUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -18,6 +21,9 @@ import java.util.Date;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService {
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 根据用户手机号查询用户
@@ -45,6 +51,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
 
         return user;
+    }
+
+    /**
+     * 通过用户ID获取用户名
+     * @param userId
+     * @return
+     */
+    @Override
+    public String getUserNameById(Integer userId) {
+        User user = userMapper.selectById(userId);
+
+        if (user == null){
+            return null;
+        }
+
+        return user.getUserName();
     }
 
     private String getRandomName(){

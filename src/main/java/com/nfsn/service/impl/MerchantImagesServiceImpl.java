@@ -15,4 +15,5 @@ import org.springframework.stereotype.Service;
 public class MerchantImagesServiceImpl extends ServiceImpl<MerchantImagesMapper, MerchantImages>
 implements MerchantImagesService{
 
+
 }

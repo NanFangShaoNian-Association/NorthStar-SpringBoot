@@ -18,11 +18,11 @@ import java.util.List;
 public class UserGoodVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * ID
-     */
-    @ApiModelProperty("id")
-    private Integer id;
+//    /**
+//     * ID
+//     */
+//    @ApiModelProperty("id")
+//    private Integer id;
 
     /**
      * 商品详情响应实体

@@ -20,4 +20,7 @@ public interface ArticleService extends IService<Article> {
      */
     List<Article> listByUserId(Integer id);
 
+    List<Article> getArticleList();
+
+    Article getArticleById(String articleId);
 }

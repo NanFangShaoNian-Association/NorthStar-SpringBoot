@@ -37,6 +37,7 @@ public class Result<T> implements Serializable {
         result.setResultCode(ResultCode.SUCCESS);
         return result;
     }
+
     //返回成功
     public static <T> Result<T> success(T data){
         Result result = new Result();
@@ -44,12 +45,14 @@ public class Result<T> implements Serializable {
         result.setData(data);
         return result;
     }
+
     //返回失败
     public static <T> Result<T> failure(ResultCode resultCode){
         Result result = new Result();
         result.setResultCode(resultCode);
         return result;
     }
+
     //返回失败
     public static <T> Result<T> failure(ResultCode resultCode,T data){
         Result result = new Result();

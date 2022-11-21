@@ -4,7 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.VideoMapper;
 import com.nfsn.model.entity.Video;
 import com.nfsn.service.VideoService;
+import com.nfsn.utils.CacheClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -15,6 +20,14 @@ import org.springframework.stereotype.Service;
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
     implements VideoService {
 
+    @Resource
+    private VideoMapper videoMapper;
+
+    @Override
+    public List<Video> getVideoList() {
+        List<Video> videoList = videoMapper.selectList(null);
+        return videoList;
+    }
 }
 
 
