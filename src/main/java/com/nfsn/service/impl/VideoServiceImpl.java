@@ -23,6 +23,10 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
     @Resource
     private VideoMapper videoMapper;
 
+    /**
+     * 获取视频
+     * @return
+     */
     @Override
     public List<Video> getVideoList() {
         List<Video> videoList = videoMapper.selectList(null);

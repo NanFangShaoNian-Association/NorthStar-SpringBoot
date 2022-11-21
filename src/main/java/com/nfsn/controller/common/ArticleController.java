@@ -22,7 +22,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nfsn.constants.ArticleConstans.INTRODUCTION_LONG;
+import static com.nfsn.constants.ArticleConstans.ARTICLE_INTRODUCTION_LONG;
 
 /**
  * @ClassName: UserArticleController
@@ -105,7 +105,7 @@ public class ArticleController {
         // 封装评论数
         articleVO.setCommentCount(articleCommentList.size());
 
-        articleVO.setIntroduction(article.getArticleContent().substring(0,INTRODUCTION_LONG));
+        articleVO.setIntroduction(article.getArticleContent().substring(0,ARTICLE_INTRODUCTION_LONG));
 
         return articleVO;
     }
