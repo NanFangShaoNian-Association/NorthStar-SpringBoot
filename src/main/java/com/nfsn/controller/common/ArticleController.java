@@ -79,7 +79,7 @@ public class ArticleController {
         // 根据用户id，从用户表中获取用户名，并封装入articleVO中
         articleVO.setUserName(userService.getUserNameById(article.getUserId()));
         // 根据文章id，从article_comment表中获取所有这篇文章的评论，并封装入articleVO中
-
+//        List<ArticleCommentVO>
 
         return articleVO;
     }

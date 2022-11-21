@@ -1,8 +1,6 @@
 package com.nfsn.constants;
 
-/**
- * Redis常量
- */
+
 public class RedisConstants {
     public static final String LOGIN_CODE_KEY = "login:code:";
     public static final Long LOGIN_CODE_TTL = 5L;
@@ -22,4 +20,7 @@ public class RedisConstants {
     public static final String FEED_KEY = "feed:";
     public static final String SHOP_GEO_KEY = "shop:geo:";
     public static final String USER_SIGN_KEY = "sign:";
+
+    public static final Long CACHE_GOODS_TTL = 30L;
+    public static final String CACHE_GOODS_KEY = "cache:goods:";
 }
