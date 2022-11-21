@@ -6,7 +6,6 @@ import com.nfsn.model.vo.VideoListVO;
 import com.nfsn.model.vo.VideoVO;
 //import org.mapstruct.Mapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
