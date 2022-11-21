@@ -10,9 +10,9 @@ import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.ArticleCommentVO;
 import com.nfsn.model.vo.ArticleListVO;
 import com.nfsn.model.vo.ArticleVO;
+import com.nfsn.service.ArticleCollectionService;
 import com.nfsn.service.ArticleCommentService;
 import com.nfsn.service.ArticleService;
-import com.nfsn.service.UserService;
 import com.nfsn.utils.AccountHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,10 +33,12 @@ import static com.nfsn.constants.ResultCode.USER_ARTICLE_PUBLISH_FAIL;
 public class UserArticleServiceImpl {
     @Resource
     private ArticleService articleService;
-    @Resource
-    private UserService userService;
+
     @Resource
     private ArticleCommentService articleCommentService;
+
+    @Resource
+    private ArticleCollectionService articleCollectionService;
 
     /**
      * 获取文章列表
@@ -86,7 +88,7 @@ public class UserArticleServiceImpl {
      *
      * @param addArticleRequest 添加文章请求实体
      */
-    public void getArticle(AddArticleRequest addArticleRequest) {
+    public void addArticle(AddArticleRequest addArticleRequest) {
         User user = AccountHolder.getUser();
         Article article = BeanUtil.copyProperties(addArticleRequest, Article.class);
         //补全所有的值
@@ -100,5 +102,38 @@ public class UserArticleServiceImpl {
             //发布失败，抛出异常
             throw new UserArticleException(USER_ARTICLE_PUBLISH_FAIL);
         }
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param articleId 文章Id
+     */
+    public void deleteArticle(Integer articleId) {
+        User user = AccountHolder.getUser();
+        //根据用户id确认该文章是否为自己的，再根据文章id删除该文章
+        articleService.deleteArticleById(user.getId(), articleId);
+    }
+
+    /**
+     * 收藏文章
+     *
+     * @param articleId 文章Id
+     */
+    public void collectionArticle(Integer articleId) {
+        User user = AccountHolder.getUser();
+        //收藏文章
+        articleCollectionService.collectionArticle(user.getId(), articleId);
+    }
+
+    /**
+     * 删除收藏的文章
+     *
+     * @param articleId 文章Id
+     */
+    public void deleteCollectionArticle(Integer articleId) {
+        User user = AccountHolder.getUser();
+        //删除收藏的文章
+        articleCollectionService.deleteCollectionArticle(user.getId(), articleId);
     }
 }
