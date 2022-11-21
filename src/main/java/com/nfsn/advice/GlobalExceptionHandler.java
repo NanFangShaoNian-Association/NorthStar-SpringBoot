@@ -1,3 +1,4 @@
+/*
 package com.nfsn.advice;
 
 import com.nfsn.common.Result;
@@ -29,4 +30,4 @@ public class GlobalExceptionHandler {
     public Result internalExceptionHandler(HttpServletRequest req, Exception e) {
         return new Result(ResultCode.INTERNAL_ERROR, null);
     }
-}
+}*/
