@@ -23,6 +23,7 @@ public enum ResultCode {
     USER_COLLECTION_HAS_EXISTED(2011,"用户文章已收藏，请勿重复操作"),
     USER_COLLECTION_NOT_EXISTED(2012,"用户文章尚未收藏，请勿重复此操作"),
     USER_COLLECTION_FAIL(2013,"用户文章操作失败，请检查此操作是否合法"),
+//    USER_pet_FAIL(2013,"用户文章操作失败，请检查此操作是否合法"),
     /*服务器内部错误*/
     INTERNAL_ERROR(5001,"服务器内部错误，请联系开发人员");
 

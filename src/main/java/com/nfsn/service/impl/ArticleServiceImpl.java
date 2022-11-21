@@ -6,7 +6,6 @@ import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserArticleException;
 import com.nfsn.mapper.ArticleMapper;
 import com.nfsn.model.entity.Article;
-import com.nfsn.model.entity.Video;
 import com.nfsn.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -55,7 +54,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
             throw new UserArticleException(ResultCode.USER_ARTICLE_DELETE_FAIL);
         }
     }
-}
 
     @Override
     public List<Article> getArticleList() {
