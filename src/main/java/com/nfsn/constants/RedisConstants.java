@@ -23,4 +23,8 @@ public class RedisConstants {
 
     public static final Long CACHE_GOODS_TTL = 30L;
     public static final String CACHE_GOODS_KEY = "cache:goods:";
+
+    public static final Long CACHE_ArticleComment_TTL = 30L;
+    public static final String CACHE_ArticleComment_KEY = "cache:articlecomment:";
+
 }
