@@ -13,4 +13,6 @@ import java.util.List;
 public interface VideoService extends IService<Video> {
 
     List<Video> getVideoList();
+
+    Video getVideoById(String videoId);
 }
