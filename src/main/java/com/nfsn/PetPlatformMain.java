@@ -15,5 +15,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PetPlatformMain {
     public static void main(String[] args) {
         SpringApplication.run(PetPlatformMain.class,args);
+        System.out.println("test");
     }
 }
