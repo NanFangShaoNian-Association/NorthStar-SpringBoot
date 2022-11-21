@@ -20,6 +20,10 @@ public interface ArticleService extends IService<Article> {
      */
     List<Article> listByUserId(Integer id);
 
+    List<Article> getArticleList();
+
+    Article getArticleById(String articleId);
+
     /**
      * 根据用户id确认该文章是否为自己的，再根据文章id删除该文章
      *

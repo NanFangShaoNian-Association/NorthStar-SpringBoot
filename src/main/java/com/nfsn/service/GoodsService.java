@@ -2,6 +2,9 @@ package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.Goods;
+import com.nfsn.model.vo.UserGoodListVO;
+
+import java.util.List;
 
 
 /**
@@ -11,4 +14,5 @@ import com.nfsn.model.entity.Goods;
 */
 public interface GoodsService extends IService<Goods> {
 
+    Goods getGoodsById(String goodId);
 }

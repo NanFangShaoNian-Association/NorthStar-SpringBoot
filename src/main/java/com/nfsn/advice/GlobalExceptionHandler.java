@@ -1,3 +1,4 @@
+/*
 package com.nfsn.advice;
 
 import com.nfsn.common.Result;
@@ -31,4 +32,4 @@ public class GlobalExceptionHandler {
     }
 
 
-}
+}*/

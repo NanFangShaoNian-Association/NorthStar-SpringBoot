@@ -26,7 +26,7 @@ public class VideoListVO implements Serializable {
      * 用户名
      */
     @ApiModelProperty("用户名")
-    private Integer userName;
+    private String userName;
 
     /**
      * 封面

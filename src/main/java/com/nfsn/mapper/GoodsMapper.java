@@ -2,6 +2,9 @@ package com.nfsn.mapper;
 
 import com.nfsn.model.entity.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.nfsn.model.vo.GoodVO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.Mapping;
 
 /**
 * @author Tuanzi
@@ -10,6 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.nfsn.model.entity.com.nfsn.model.entity.Goods
 */
 public interface GoodsMapper extends BaseMapper<Goods> {
-
 
 }

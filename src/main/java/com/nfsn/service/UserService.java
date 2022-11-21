@@ -18,4 +18,6 @@ public interface UserService extends IService<User> {
      * @return 用户信息
      */
     User getUserByPhone(String phone, Date loginTime);
+
+    String getUserNameById(Integer userId);
 }

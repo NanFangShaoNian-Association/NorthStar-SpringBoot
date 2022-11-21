@@ -2,6 +2,9 @@ package com.nfsn.mapper;
 
 import com.nfsn.model.entity.MerchantImages;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -10,6 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.nfsn.model.entity.com.nfsn.model.entity.MerchantImages
 */
 public interface MerchantImagesMapper extends BaseMapper<MerchantImages> {
-
 
 }
