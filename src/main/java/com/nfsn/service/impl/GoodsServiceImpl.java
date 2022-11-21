@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
-import static com.nfsn.common.RedisConstants.CACHE_GOODS_KEY;
-import static com.nfsn.common.RedisConstants.CACHE_GOODS_TTL;
+import static com.nfsn.constants.RedisConstants.CACHE_GOODS_KEY;
+import static com.nfsn.constants.RedisConstants.CACHE_GOODS_TTL;
 
 /**
 * @author Tuanzi
