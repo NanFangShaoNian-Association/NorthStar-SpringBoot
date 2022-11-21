@@ -36,17 +36,17 @@ public class VideoVO implements Serializable {
     @ApiModelProperty("用户名")
     private String userName;
 
-    /**
-     * 简介
-     */
-    @ApiModelProperty("简介")
-    private String introduction;
+//    /**
+//     * 简介
+//     */
+//    @ApiModelProperty("简介")
+//    private String introduction;
 
     /**
      * 内容
      */
     @ApiModelProperty("内容")
-    private String articleContent;
+    private String videoContent;
 
     /**
      * 发表时间

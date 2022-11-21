@@ -47,7 +47,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
      */
     @Override
     public Article getArticleById(String articleId) {
-        Article article = articleMapper.selectById(articleId);
-        return article;
+        return articleMapper.selectById(articleId);
     }
 }

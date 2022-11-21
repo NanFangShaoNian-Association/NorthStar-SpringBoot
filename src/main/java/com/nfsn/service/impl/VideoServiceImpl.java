@@ -32,6 +32,11 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
         List<Video> videoList = videoMapper.selectList(null);
         return videoList;
     }
+
+    @Override
+    public Video getVideoById(String videoId) {
+        return videoMapper.selectById(videoId);
+    }
 }
 
 
