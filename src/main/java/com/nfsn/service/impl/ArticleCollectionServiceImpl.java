@@ -11,6 +11,7 @@ import com.nfsn.service.ArticleCollectionService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -80,5 +81,16 @@ implements ArticleCollectionService{
             log.error("deleteCollectionArticle error:{}",e);
             throw new UserArticleException(ResultCode.USER_COLLECTION_FAIL);
         }
+    }
+
+    /**
+     * 根据用户id查询收藏的文章列表
+     *
+     * @param id 用户id
+     * @return 收藏的文章列表
+     */
+    @Override
+    public List<ArticleCollection> listByUserId(Integer id) {
+        return this.list(new LambdaQueryWrapper<ArticleCollection>().eq(ArticleCollection::getUserId, id).eq(ArticleCollection::getDeleted,0));
     }
 }
