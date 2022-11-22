@@ -26,7 +26,7 @@ public class PetVO  implements Serializable {
      * 宠物品种
      */
     @ApiModelProperty("宠物品种")
-    private Integer petVariety;
+    private String petVariety;
 
     /**
      * 宠物名

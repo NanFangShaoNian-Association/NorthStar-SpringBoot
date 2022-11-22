@@ -1,5 +1,6 @@
 package com.nfsn.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -46,6 +47,7 @@ public class LoginRequest implements Serializable {
      * 登陆时间
      */
     @ApiModelProperty("登陆时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date loginTime;
 
     /**

@@ -1,10 +1,12 @@
 package com.nfsn.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @ClassName: UpdatePetRequest
@@ -13,7 +15,7 @@ import java.io.Serializable;
  * @Description: 编辑/新增宠物信息请求实体
  */
 @Data
-@ApiModel("编辑/新增宠物信息请求实体")
+@ApiModel("编辑、新增宠物信息请求实体")
 public class UpdatePetRequest implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
@@ -25,8 +27,8 @@ public class UpdatePetRequest implements Serializable {
     /**
      * 宠物品种
      */
-    @ApiModelProperty("宠物品种")
-    private Integer petVariety;
+    @ApiModelProperty("宠物品种ID")
+    private Integer petVarietyId;
 
     /**
      * 宠物名
@@ -35,10 +37,11 @@ public class UpdatePetRequest implements Serializable {
     private String nickName;
 
     /**
-     * 年龄
+     * 生日
      */
-    @ApiModelProperty("年龄")
-    private Integer age;
+    @ApiModelProperty("年龄，按出生年月日算：示例2012-03-24")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date birthday;
 
     /**
      * 照片
