@@ -30,17 +30,17 @@ public class ArticleCommentVO implements Serializable {
     @ApiModelProperty("评论者ID")
     private Integer reviewerId;
 
-    /**
-     * 回复者ID
-     */
-    @ApiModelProperty("回复者ID")
-    private Integer replierId;
-
-    /**
-     * 内容类型（0文本，1表情包，2图片）
-     */
-    @ApiModelProperty("内容类型（0文本，1表情包，2图片）")
-    private Integer type;
+//    /**
+//     * 回复者ID
+//     */
+//    @ApiModelProperty("回复者ID")
+//    private Integer replierId;
+//
+//    /**
+//     * 内容类型（0文本，1表情包，2图片）
+//     */
+//    @ApiModelProperty("内容类型（0文本，1表情包，2图片）")
+//    private Integer type;
 
     /**
      * 内容

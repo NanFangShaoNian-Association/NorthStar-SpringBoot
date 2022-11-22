@@ -19,4 +19,6 @@ public interface ArticleCommentService extends IService<ArticleComment> {
      * @return 评论列表
      */
     List<ArticleComment> listByArticleId(Integer articleId);
+
+    List<ArticleComment> getArticleCommentById(String articleId);
 }
