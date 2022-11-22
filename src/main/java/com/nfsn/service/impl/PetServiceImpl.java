@@ -1,8 +1,11 @@
 package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.nfsn.constants.ResultCode;
+import com.nfsn.exception.UserPetException;
 import com.nfsn.mapper.PetMapper;
 import com.nfsn.model.dto.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
@@ -16,6 +19,7 @@ import com.nfsn.utils.AccountHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,18 +52,19 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet>
         ids.stream().forEach(id -> queryWrapper.or().eq(PetVariety::getId,id));
         //查询获取宠物品种名
         List<PetVariety> petVarieties = petVarietyService.list(queryWrapper);
-        //填充宠物品种名
+        //填充所有字段
         List<PetsListVO> petsListVOS = BeanUtil.copyToList(petList, PetsListVO.class);
+        //填充宠物品种名
+        for (int i = 0; i < petsListVOS.size(); i++) {
+            Integer varietyId = petList.get(i).getPetVarietyId();
+            for (int j = 0; j < petVarieties.size(); j++) {
+                if (varietyId == petVarieties.get(j).getId()){
+                    petsListVOS.get(i).setPetVariety(petVarieties.get(j).getPetVarietyName());
+                    break;
+                }
+            }
 
-//        int count = 0;
-//        for (int i = 0; i < petsListVOS.size(); i++) {
-//            petList.get(i).getPetVarietyId();
-//            petsListVOS.get(i).setPetVariety();
-//        }
-//        petsListVOS = petsListVOS.stream().flatMap(petsListVO -> {
-//            petsListVO.setPetVariety(petVarieties.);
-//            return petsListVO;
-//        }).collect(Collectors.toList());
+        }
         return petsListVOS;
     }
 
@@ -71,7 +76,27 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet>
      */
     @Override
     public PetVO getPet(Integer petId) {
-        return null;
+        User user = AccountHolder.getUser();
+        //获取宠物详细信息
+        Pet pet = this.getOne(new LambdaQueryWrapper<Pet>()
+                .eq(Pet::getMasterId, user.getId())
+                .eq(Pet::getId,petId));
+        //判断对象是否为空
+        if (ObjectUtil.isNull(pet)){
+            throw new UserPetException(ResultCode.USER_PET_NOT_EXISTED);
+        }
+        //查询获取宠物品种名
+        PetVariety petVariety = petVarietyService.getOne(
+                new LambdaQueryWrapper<PetVariety>().eq(PetVariety::getId, pet.getPetVarietyId()));
+        //填充所有字段
+        PetVO petVO = BeanUtil.copyProperties(pet, PetVO.class);
+        //判断对象不为空
+        if (ObjectUtil.isNotNull(petVariety)){
+//            throw new UserPetException(ResultCode.USER_PET_VARIETY_NOT_EXISTED);
+            //填充宠物品种名
+            petVO.setPetVariety(petVariety.getPetVarietyName());
+        }
+        return petVO;
     }
 
     /**
@@ -81,8 +106,14 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet>
      */
     @Override
     public void updatePet(UpdatePetRequest updatePetRequest) {
-
+        User user = AccountHolder.getUser();
+        //主人ID、创建时间
+        Pet pet = BeanUtil.copyProperties(updatePetRequest, Pet.class);
+        pet.setMasterId(user.getId());
+        pet.setCreateTime(new Date());
+        this.saveOrUpdate(pet);
     }
+
 }
 
 

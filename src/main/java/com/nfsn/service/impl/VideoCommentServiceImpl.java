@@ -1,5 +1,6 @@
 package com.nfsn.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.VideoCommentMapper;
 import com.nfsn.model.entity.VideoComment;
@@ -7,7 +8,6 @@ import com.nfsn.service.VideoCommentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +22,17 @@ implements VideoCommentService{
 
     @Resource
     private VideoCommentMapper videoCommentMapper;
+
+    /**
+     * 根据视频id查询该视频对应的评论
+     *
+     * @param videoId 视频id
+     * @return 视频列表
+     */
+    @Override
+    public List<VideoComment> listByVideoId(Integer videoId) {
+        return this.list(new LambdaQueryWrapper<VideoComment>().eq(VideoComment::getVideoId, videoId));
+    }
 
     @Override
     public List<VideoComment> getVideoCommentByVideoId(String videoId) {
