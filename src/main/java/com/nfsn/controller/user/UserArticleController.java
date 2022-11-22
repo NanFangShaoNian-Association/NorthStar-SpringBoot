@@ -78,6 +78,15 @@ public class UserArticleController {
         userArticleService.deleteArticle(value);
     }
 
+    @GetMapping("/collectionList")
+    @ApiOperation("获取收藏文章列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public List<ArticleListVO> collectionList(){
+        return userArticleService.collectionList();
+    }
+
     @PostMapping("/collectionArticle/{articleId}")
     @ApiOperation("收藏文章")
     @ApiImplicitParams({
