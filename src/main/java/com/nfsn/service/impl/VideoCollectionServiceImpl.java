@@ -8,6 +8,8 @@ import com.nfsn.exception.UserVideoException;
 import com.nfsn.mapper.VideoCollectionMapper;
 import com.nfsn.model.entity.VideoCollection;
 import com.nfsn.service.VideoCollectionService;
+import com.nfsn.service.VideoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -21,6 +23,13 @@ import java.util.List;
 @Service
 public class VideoCollectionServiceImpl extends ServiceImpl<VideoCollectionMapper, VideoCollection>
 implements VideoCollectionService{
+    private VideoService videoService;
+
+    @Autowired
+    public void setVideoService(VideoService videoService) {
+        this.videoService = videoService;
+    }
+
     /**
      * 收藏视频
      *
@@ -30,6 +39,10 @@ implements VideoCollectionService{
     @Override
     public void collectionVideo(Integer id, Integer videoId) {
         try {
+            //检查视频是否存在
+            if (videoService.getVideoById(String.valueOf(videoId)) == null){
+                throw new UserVideoException(ResultCode.USER_VIDEO_NOT_EXISTED);
+            }
             //检查是否已收藏
             VideoCollection collection = this.getOne(new LambdaQueryWrapper<VideoCollection>()
                     .eq(VideoCollection::getUserId, id)

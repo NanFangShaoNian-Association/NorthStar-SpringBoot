@@ -8,6 +8,8 @@ import com.nfsn.exception.UserArticleException;
 import com.nfsn.mapper.ArticleCollectionMapper;
 import com.nfsn.model.entity.ArticleCollection;
 import com.nfsn.service.ArticleCollectionService;
+import com.nfsn.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -21,6 +23,12 @@ import java.util.List;
 @Service
 public class ArticleCollectionServiceImpl extends ServiceImpl<ArticleCollectionMapper, ArticleCollection>
 implements ArticleCollectionService{
+    private ArticleService articleService;
+
+    @Autowired
+    public void setArticleService(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     /**
      * 收藏文章
@@ -31,6 +39,10 @@ implements ArticleCollectionService{
     @Override
     public void collectionArticle(Integer id, Integer articleId) {
         try {
+            //检查视频是否存在
+            if (articleService.getArticleById(String.valueOf(articleId)) == null){
+                throw new UserArticleException(ResultCode.USER_ARTICLE_NOT_EXISTED);
+            }
             //检查是否已收藏
             ArticleCollection collection = this.getOne(new LambdaQueryWrapper<ArticleCollection>()
                     .eq(ArticleCollection::getUserId, id)

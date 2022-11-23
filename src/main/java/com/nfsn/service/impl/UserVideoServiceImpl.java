@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,14 +91,12 @@ public class UserVideoServiceImpl {
     public void addVideo(AddVideoRequest addVideoRequest) {
         User user = AccountHolder.getUser();
         Video video = BeanUtil.copyProperties(addVideoRequest, Video.class);
-        //todo：转换图片列表为字符串，以|为分隔符
-//        String imageUrl = addVideoRequest.getImagesUrl().stream().collect(Collectors.joining("|"));
 
         //补全所有的值
         video.setUserId(user.getId());
         video.setLikeCount(0);
         video.setCollectionCount(0);
-//        video.setVideoUrl(imageUrl);
+        video.setCreateTime(new Date());
         try {
             //保存视频
             videoService.save(video);
