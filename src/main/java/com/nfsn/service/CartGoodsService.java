@@ -3,6 +3,8 @@ package com.nfsn.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.CartGoods;
 
+import java.util.List;
+
 /**
 * @author Tuanzi
 * @description 针对表【cart_goods】的数据库操作Service
@@ -10,4 +12,5 @@ import com.nfsn.model.entity.CartGoods;
 */
 public interface CartGoodsService extends IService<CartGoods> {
 
+    List<CartGoods> getCartGoodsByUserId(String userId);
 }

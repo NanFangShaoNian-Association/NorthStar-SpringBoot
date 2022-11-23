@@ -14,5 +14,5 @@ import java.util.List;
 */
 public interface MerchantCommentService extends IService<MerchantComment> {
 
-    List<GoodCommentVO> getGoodsCommentListByGoodsId(String goodId);
+    List<GoodCommentVO> getGoodsCommentListByGoodsId(int goodId);
 }

@@ -47,13 +47,13 @@ public class CartItemVO implements Serializable {
      * 单价
      */
     @ApiModelProperty("商品单价")
-    private String price;
+    private int price;
 
     /**
      * 选择数量
      */
     @ApiModelProperty("选择数量")
-    private String number;
+    private Integer number;
 
 
 
