@@ -1,7 +1,10 @@
 package com.nfsn.controller.user;
 
+import com.nfsn.mapper.CartMapper;
+import com.nfsn.model.entity.Cart;
 import com.nfsn.model.vo.CartItemVO;
 import com.nfsn.model.vo.CartVO;
+import com.nfsn.service.CartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +27,19 @@ import java.util.List;
 @Api("用户购物车操作类")
 public class UserCartController {
 
+
+
+    @Resource
+    private CartService cartService;
+
     @GetMapping("/list/{userId}")
     @ApiOperation("获取购物车列表")
     public CartVO list(@PathVariable("userId") String userId){
         CartVO cartVO = new CartVO();
         List<CartItemVO> cartItemVOList = new ArrayList<>();
 
+        // 根据用户id查购物车id
+        int cartId = cartService.getCartIdByUserId(userId);
 
         return cartVO;
     }

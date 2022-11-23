@@ -39,15 +39,34 @@ implements OrderInfoService{
 
     @Override
     public void insertOrder(UserOrderRequest userOrderRequest) {
-/*        OrderInfo orderInfo = new OrderInfo();
+        OrderInfo orderInfo = new OrderInfo();
 
+        // 为每一件商品创建一个订单
         for (int i = 0; i < userOrderRequest.getOrders().size(); i++) {
+            // 用户ID
             orderInfo.setUserId(userOrderRequest.getUserId());
+            // 商品ID
             orderInfo.setGoodsId(userOrderRequest.getOrders().get(i).getId());
+            // 商家ID
+
+            // 发货地址ID
             orderInfo.setShipAddressId(userOrderRequest.getAddressId());
+            // 商户订单编号
+
+            // 订单标题
+
+            // 订单金额（分）
             orderInfo.setTotalFee(userOrderRequest.getOrders().get(i).getPrice());
+            // 订单二维码链接
+
+            // 订单备注
+            orderInfo.setOrderRemark(userOrderRequest.getOrderMark());
+            // 创建时间
+
+            // 更新时间
+
             orderInfoMapper.insert(orderInfo);
-        }*/
+        }
 
 
     }

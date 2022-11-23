@@ -28,12 +28,6 @@ public class Cart implements Serializable {
     @TableField(value = "user_id")
     private Integer userId;
 
-    /**
-     * 总金额（分）
-     */
-    @TableField(value = "total_price")
-    private Integer totalPrice;
-
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
