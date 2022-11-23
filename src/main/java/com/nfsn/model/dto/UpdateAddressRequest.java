@@ -42,9 +42,9 @@ public class UpdateAddressRequest implements Serializable {
     private String phoneNumber;
 
     /**
-     * 所在地区（省、市、区、镇）
+     * 所在地区（省、市、区），填写示例：广东省-广州市-黄埔区
      */
-    @ApiModelProperty("所在地区（省、市、区、镇）")
+    @ApiModelProperty("所在地区（省、市、区），填写示例：广东省-广州市-黄埔区")
     private String place;
 
     /**

@@ -55,6 +55,18 @@ public class Address implements Serializable {
     private String detailAddress;
 
     /**
+     * 收件人
+     */
+    @TableField(value = "receiver")
+    private String receiver;
+
+    /**
+     * 手机号
+     */
+    @TableField(value = "phoneNumber")
+    private String phoneNumber;
+
+    /**
      * 是否删除（0未删除，1已删除）
      */
     @TableField(value = "deleted")

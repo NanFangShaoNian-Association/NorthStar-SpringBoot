@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     //参数转换异常拦截，-1为系统异常
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result paramExceptionHandler(HttpServletRequest req, HttpMessageNotReadableException e) {
-        log.error("出现UserPetException异常：",e);
+        log.error("出现HttpMessageNotReadableException异常：",e);
         return new Result(-1,e.getCause().toString(), null);
     }
 
