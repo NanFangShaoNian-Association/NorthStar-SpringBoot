@@ -51,6 +51,7 @@ public class ArticleController {
     @GetMapping("/list")
     @ApiOperation("获取文章列表")
     public List<ArticleListVO> list(){
+
         List<ArticleListVO> articleListVOList = new ArrayList<>();
 
         List<Article> articleList = articleService.getArticleList();
