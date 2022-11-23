@@ -10,4 +10,5 @@ import com.nfsn.model.entity.Cart;
 */
 public interface CartService extends IService<Cart> {
 
+    int getCartIdByUserId(String userId);
 }
