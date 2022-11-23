@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,6 +98,7 @@ public class UserArticleServiceImpl {
         String imageUrl = addArticleRequest.getImagesUrl().stream().collect(Collectors.joining("|"));
 
         //补全所有的值
+        article.setCreateTime(new Date());
         article.setUserId(user.getId());
         article.setLikeCount(0);
         article.setCollectionCount(0);
