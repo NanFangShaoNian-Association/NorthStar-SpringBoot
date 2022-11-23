@@ -43,6 +43,6 @@ public class UserOrderController {
     @ApiOperation("创建订单")
     @PostMapping("/addOrder")
     public void addOrder(@RequestBody UserOrderRequest userOrderRequest) {
-//            orderInfoService.insertOrder(userOrderRequest);
+            orderInfoService.insertOrder(userOrderRequest);
     }
 }

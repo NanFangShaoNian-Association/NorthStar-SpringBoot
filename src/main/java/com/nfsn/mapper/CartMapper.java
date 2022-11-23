@@ -10,6 +10,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.nfsn.model.entity.com.nfsn.model.entity.Cart
 */
 public interface CartMapper extends BaseMapper<Cart> {
-
-
 }

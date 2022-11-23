@@ -11,7 +11,7 @@
  Target Server Version : 80023
  File Encoding         : 65001
 
- Date: 23/11/2022 16:41:14
+ Date: 23/11/2022 17:32:35
 */
 
 SET NAMES utf8mb4;
@@ -28,6 +28,8 @@ CREATE TABLE `address`  (
   `city_id` int(0) NULL DEFAULT NULL COMMENT '市ID',
   `region_id` int(0) NULL DEFAULT NULL COMMENT '区ID',
   `detail_address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '详细地址',
+  `receiver` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收件人',
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
   `deleted` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否删除（0未删除，1已删除）',
   `is_default` tinyint(0) NULL DEFAULT NULL COMMENT '是否默认（0否，1默认）',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
@@ -117,27 +119,12 @@ CREATE TABLE `article_tag`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for cart
--- ----------------------------
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE `cart`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '购物车ID',
-  `user_id` int(0) NULL DEFAULT NULL COMMENT '用户ID',
-  `total_price` int(0) NULL DEFAULT NULL COMMENT '总金额（分）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of cart
--- ----------------------------
-
--- ----------------------------
 -- Table structure for cart_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `cart_goods`;
 CREATE TABLE `cart_goods`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '购物车商品ID',
-  `cart_id` int(0) NULL DEFAULT NULL COMMENT '购物车ID',
+  `user_id` int(0) NULL DEFAULT NULL COMMENT '用户ID',
   `goods_id` int(0) NULL DEFAULT NULL COMMENT '商品ID',
   `goods_quantity` int(0) NULL DEFAULT 1 COMMENT '商品数量',
   PRIMARY KEY (`id`) USING BTREE
@@ -359,7 +346,7 @@ CREATE TABLE `order_info`  (
   `user_id` int(0) NULL DEFAULT NULL COMMENT '用户ID',
   `goods_id` int(0) NULL DEFAULT NULL COMMENT '商品ID',
   `merchant_id` int(0) NULL DEFAULT NULL COMMENT '商家ID',
-  `ship_address_id` int(0) NULL DEFAULT NULL COMMENT '发货地址ID',
+  `ship_address_id` int(0) NULL DEFAULT NULL COMMENT '收货地址ID',
   `order_no` int(0) NULL DEFAULT NULL COMMENT '商户订单编号',
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单标题',
   `total_fee` int(0) NULL DEFAULT NULL COMMENT '订单金额（分）',
