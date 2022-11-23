@@ -1,6 +1,9 @@
 package com.nfsn.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.nfsn.model.dto.UpdateAddressRequest;
+import com.nfsn.model.entity.Address;
 import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.UserAddressVO;
 import com.nfsn.service.AddressService;
@@ -9,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,7 +57,17 @@ public class UserAddressServiceImpl {
      * @param updateAddressRequest 更新地址信息传输实体
      */
     public void updateAddress(UpdateAddressRequest updateAddressRequest) {
-//        addressService.getAddressByUserId();
+        String[] places = updateAddressRequest.getPlace().split("-");
+        Address address = BeanUtil.copyProperties(updateAddressRequest, Address.class);
+        address.setDeleted(0);
+        address.setUpdateTime(new Date());
+        address.setCreateTime(new Date());
+        //todo:省市区id
+//        address.setProvinceId();
+//        address.setCityId();
+//        address.setRegionId();
+
+        addressService.save(address);
     }
 
     /**
@@ -62,6 +76,8 @@ public class UserAddressServiceImpl {
      * @param addressId 地址id
      */
     public void deleteAddress(Integer addressId) {
-//        addressService.deleteAddress();
+        addressService.update(new LambdaUpdateWrapper<Address>()
+                .eq(Address::getId,addressId)
+                .set(Address::getDeleted,1));//设置已删除
     }
 }
