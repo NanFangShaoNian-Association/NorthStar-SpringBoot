@@ -19,8 +19,19 @@ public enum ResultCode {
     USER_TOKEN_IS_BLANK(2007,"用户token为空"),
     USER_VERIFY_ERROR(2008,"验证码校验失败，请重新获取"),
     USER_ARTICLE_PUBLISH_FAIL(2009,"用户文章发布失败，请检查是否含有违规信息"),
+    USER_ARTICLE_DELETE_FAIL(2010,"用户文章删除失败，此操作为非法操作"),
+    USER_ARTICLE_NOT_EXISTED(2011,"用户文章不存在"),
+    USER_COLLECTION_HAS_EXISTED(2012,"用户已收藏，请勿重复操作"),
+    USER_COLLECTION_NOT_EXISTED(2013,"用户尚未收藏，请勿重复此操作"),
+    USER_COLLECTION_FAIL(2014,"用户收藏操作失败，请检查此操作是否合法"),
+    USER_PET_NOT_EXISTED(2015,"该宠物不存在"),
+    USER_PET_VARIETY_NOT_EXISTED(2016,"宠物品种不存在"),
+    USER_VIDEO_PUBLISH_FAIL(2017,"用户视频发布失败，请检查是否含有违规信息"),
+    USER_VIDEO_DELETE_FAIL(2018,"用户视频删除失败，此操作为非法操作"),
+    USER_VIDEO_NOT_EXISTED(2019,"用户视频不存在"),
     /*服务器内部错误*/
-    INTERNAL_ERROR(5001,"服务器内部错误");
+    INTERNAL_ERROR(5001,"服务器内部错误，请联系开发人员"),
+    PARAMETER_CONVERSION_ERROR(5002,"参数转换错误，请检查您发送的参数是否合法");
 
     /**
      * 状态码

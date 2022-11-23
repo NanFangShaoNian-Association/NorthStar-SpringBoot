@@ -1,23 +1,16 @@
 package com.nfsn.controller.user;
 
-import com.nfsn.mapper.VideoMapper;
+import com.nfsn.constants.ResultCode;
+import com.nfsn.exception.UserVideoException;
 import com.nfsn.model.dto.AddVideoRequest;
-import com.nfsn.model.entity.Goods;
-import com.nfsn.model.entity.Video;
-import com.nfsn.model.vo.GoodVO;
-import com.nfsn.model.vo.UserGoodVO;
 import com.nfsn.model.vo.VideoListVO;
 import com.nfsn.model.vo.VideoVO;
-import com.nfsn.service.VideoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import com.nfsn.service.impl.UserVideoServiceImpl;
+import io.swagger.annotations.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,44 +22,100 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/videos")
 @Api("用户自己的视频操作类")
+@Slf4j
 public class UserVideoController {
 
-    @Resource
-    private VideoService videoService;
+    @Resource(name = "userVideoService")
+    private UserVideoServiceImpl userVideoService;
 
     @GetMapping("/list")
     @ApiOperation("获取视频列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
     public List<VideoListVO> list(){
-        // 1.创建list集合，用于最终封装数据
-        List<VideoListVO> videoListVOList = new ArrayList<>();
-
-        // 2.查询
-        // 2.1 查询视频列表
-        List<Video> videoList = videoService.getVideoList();
-        // 2.2
-
-        // 2.遍历查询章节list集合进行封装，将videoList转为VideoListVO
-        for (int i = 0; i < videoList.size(); i++) {
-            VideoListVO videoListVO = new VideoListVO();
-            Video video = videoList.get(i);
-            // 根据用户id查询用户名
-
-
-            BeanUtils.copyProperties(video,videoListVO);
-            videoListVOList.add(videoListVO);
-        }
-
-        return videoListVOList;
+        return userVideoService.list();
     }
 
     @GetMapping("/getVideo/{videoId}")
     @ApiOperation("获取视频详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
     public VideoVO getVideo(@PathVariable("videoId") String videoId){
-        return null;
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(videoId);
+        } catch (NumberFormatException e) {
+            log.error("UserVideoController getVideo 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        return userVideoService.getVideo(value);
     }
 
     @PostMapping("/addVideo")
     @ApiOperation("发布视频")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
     public void addVideo(@RequestBody AddVideoRequest addVideoRequest){
+        userVideoService.addVideo(addVideoRequest);
+    }
+
+    @DeleteMapping("/deleteVideo/{videoId}")
+    @ApiOperation("删除视频")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void deleteVideo(@PathVariable("videoId") String videoId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(videoId);
+        } catch (NumberFormatException e) {
+            log.error("UserVideoController deleteVideo 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        userVideoService.deleteVideo(value);
+    }
+
+    @GetMapping("/collectionList")
+    @ApiOperation("获取收藏视频列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public List<VideoListVO> collectionList(){
+        return userVideoService.collectionList();
+    }
+
+    @PostMapping("/collectionVideo/{videoId}")
+    @ApiOperation("收藏视频")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void collectionVideo(@PathVariable("videoId") String videoId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(videoId);
+        } catch (NumberFormatException e) {
+            log.error("UserVideoController collectionArticle 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        userVideoService.collectionVideo(value);
+    }
+
+    @DeleteMapping("/deleteCollectionVideo/{videoId}")
+    @ApiOperation("删除收藏的视频")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void deleteCollectionArticle(@PathVariable("videoId") String videoId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(videoId);
+        } catch (NumberFormatException e) {
+            log.error("UserVideoController deleteCollectionArticle 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        userVideoService.deleteCollectionVideo(value);
     }
 }

@@ -59,7 +59,64 @@ public class UserArticleController {
             @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
     })
     public void addArticle(@RequestBody AddArticleRequest addArticleRequest){
-        userArticleService.getArticle(addArticleRequest);
+        userArticleService.addArticle(addArticleRequest);
+    }
+
+    @DeleteMapping("/deleteArticle/{articleId}")
+    @ApiOperation("删除文章")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void deleteArticle(@PathVariable("articleId") String articleId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(articleId);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            throw new UserArticleException(ResultCode.PARAM_IS_INVALID);
+        }
+        userArticleService.deleteArticle(value);
+    }
+
+    @GetMapping("/collectionList")
+    @ApiOperation("获取收藏文章列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public List<ArticleListVO> collectionList(){
+        return userArticleService.collectionList();
+    }
+
+    @PostMapping("/collectionArticle/{articleId}")
+    @ApiOperation("收藏文章")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void collectionArticle(@PathVariable("articleId") String articleId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(articleId);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            throw new UserArticleException(ResultCode.PARAM_IS_INVALID);
+        }
+        userArticleService.collectionArticle(value);
+    }
+
+    @DeleteMapping("/deleteCollectionArticle/{articleId}")
+    @ApiOperation("删除收藏的文章")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public void deleteCollectionArticle(@PathVariable("articleId") String articleId){
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(articleId);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            throw new UserArticleException(ResultCode.PARAM_IS_INVALID);
+        }
+        userArticleService.deleteCollectionArticle(value);
     }
 
 }

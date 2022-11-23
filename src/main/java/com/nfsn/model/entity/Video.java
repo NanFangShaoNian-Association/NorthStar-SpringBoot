@@ -47,12 +47,6 @@ public class Video implements Serializable {
     private String videoContent;
 
     /**
-     * 发表时间
-     */
-    @TableField(value = "create_time")
-    private Date createTime;
-
-    /**
      * 标题
      */
     @TableField(value = "title")
@@ -75,6 +69,12 @@ public class Video implements Serializable {
      */
     @TableField(value = "collection_count")
     private Integer collectionCount;
+
+    /**
+     * 发表时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

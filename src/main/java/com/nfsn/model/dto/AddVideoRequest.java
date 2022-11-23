@@ -18,21 +18,21 @@ public class AddVideoRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
-     */
-    @ApiModelProperty("用户ID")
-    private Integer userId;
-
-    /**
      * 视频url（只能一个）
      */
     @ApiModelProperty("视频url（只能一个）")
     private String videoUrl;
 
     /**
-     * 内容
+     * 标题
      */
-    @ApiModelProperty("内容")
-    private String videoContent;
+    @ApiModelProperty("标题")
+    private String title;
+
+    /**
+     * 封面
+     */
+    @ApiModelProperty("封面")
+    private String coverUrl;
 
 }

@@ -18,12 +18,15 @@ import java.util.List;
 @RequestMapping("/users/address")
 @Api("用户端地址操作类")
 public class UserAddressController {
+//    @Resource(name = "userAddressService")
+//    private UserAddressServiceImpl userAddressService;
 
     //获取地址列表
     @ApiOperation("获取地址列表")
     @GetMapping("/list/{userId}")
     public List<UserAddressVO> list(@PathVariable("userId") Integer userId) {
         return null;
+//        return userAddressService.list();
     }
 
     //获取详细地址
