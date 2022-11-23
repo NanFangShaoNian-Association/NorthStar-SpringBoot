@@ -23,6 +23,12 @@ public class MerchantComment implements Serializable {
     private Integer id;
 
     /**
+     * 商品ID
+     */
+    @TableField(value = "goods_id")
+    private Integer goodsId;
+
+    /**
      * 评论者ID
      */
     @TableField(value = "reviewer_id")
