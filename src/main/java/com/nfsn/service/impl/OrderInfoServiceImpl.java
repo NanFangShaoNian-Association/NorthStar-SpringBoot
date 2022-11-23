@@ -2,6 +2,7 @@ package com.nfsn.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.OrderInfoMapper;
+import com.nfsn.model.dto.UserOrderRequest;
 import com.nfsn.model.entity.MerchantImages;
 import com.nfsn.model.entity.OrderInfo;
 import com.nfsn.service.OrderInfoService;
@@ -34,6 +35,21 @@ implements OrderInfoService{
         map.put("goods_id",merchantId);
         List<OrderInfo> orderInfos = orderInfoMapper.selectByMap(map);
         return String.valueOf(orderInfos.size());
+    }
+
+    @Override
+    public void insertOrder(UserOrderRequest userOrderRequest) {
+/*        OrderInfo orderInfo = new OrderInfo();
+
+        for (int i = 0; i < userOrderRequest.getOrders().size(); i++) {
+            orderInfo.setUserId(userOrderRequest.getUserId());
+            orderInfo.setGoodsId(userOrderRequest.getOrders().get(i).getId());
+            orderInfo.setShipAddressId(userOrderRequest.getAddressId());
+            orderInfo.setTotalFee(userOrderRequest.getOrders().get(i).getPrice());
+            orderInfoMapper.insert(orderInfo);
+        }*/
+
+
     }
 
 }

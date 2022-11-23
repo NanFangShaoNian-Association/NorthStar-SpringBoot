@@ -14,7 +14,8 @@
             <result property="title" column="title" jdbcType="VARCHAR"/>
             <result property="total_fee" column="total_fee" jdbcType="INTEGER"/>
             <result property="code_url" column="code_url" jdbcType="VARCHAR"/>
-            <result property="order_status" column="order_status" jdbcType="VARCHAR"/>
+            <result property="order_status" column="order_status" jdbcType="INTEGER"/>
+            <result property="order_remark" column="order_remark" jdbcType="VARCHAR"/>
             <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -23,6 +24,6 @@
         id,user_id,goods_id,
         merchant_id,ship_address_id,order_no,
         title,total_fee,code_url,
-        order_status,create_time,update_time
+        order_status,order_remark,create_time,update_time
     </sql>
 </mapper>

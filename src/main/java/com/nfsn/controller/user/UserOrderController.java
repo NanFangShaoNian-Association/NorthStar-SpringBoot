@@ -3,10 +3,12 @@ package com.nfsn.controller.user;
 import com.nfsn.model.dto.UserOrderRequest;
 import com.nfsn.model.vo.UserOrderListVO;
 import com.nfsn.model.vo.UserOrderVO;
+import com.nfsn.service.OrderInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,6 +21,9 @@ import java.util.List;
 @RequestMapping("/users/orders")
 @Api("用户端订单操作类")
 public class UserOrderController {
+
+    @Resource
+    private OrderInfoService orderInfoService;
 
     //获取订单列表
     @ApiOperation("获取订单列表")
@@ -38,5 +43,6 @@ public class UserOrderController {
     @ApiOperation("创建订单")
     @PostMapping("/addOrder")
     public void addOrder(@RequestBody UserOrderRequest userOrderRequest) {
+//            orderInfoService.insertOrder(userOrderRequest);
     }
 }

@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本机MySQL
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
  Source Server Version : 80023
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80023
  File Encoding         : 65001
 
- Date: 06/11/2022 12:36:09
+ Date: 23/11/2022 16:41:14
 */
 
 SET NAMES utf8mb4;
@@ -36,6 +36,10 @@ CREATE TABLE `address`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of address
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for article
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
@@ -50,7 +54,14 @@ CREATE TABLE `article`  (
   `like_count` int(0) NULL DEFAULT NULL COMMENT '点赞数(默认0)',
   `collection_count` int(0) NULL DEFAULT NULL COMMENT '收藏数(默认0)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES (1, 1, 1, '1', '123456789', '2022-11-21 20:36:33', '1', 1, 1);
+INSERT INTO `article` VALUES (2, 2, 2, '2', '2', '2022-11-20 15:00:54', '2', 2, 2);
+INSERT INTO `article` VALUES (3, 3, 3, '3', '3', '2022-11-20 15:01:01', '3', 3, 3);
 
 -- ----------------------------
 -- Table structure for article_collection
@@ -66,6 +77,10 @@ CREATE TABLE `article_collection`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of article_collection
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for article_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `article_comment`;
@@ -78,7 +93,13 @@ CREATE TABLE `article_comment`  (
   `is_read` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否已读（0未读，1已读）',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of article_comment
+-- ----------------------------
+INSERT INTO `article_comment` VALUES (1, 1, 1, '1', 0, 0, '2022-11-21 16:57:57');
+INSERT INTO `article_comment` VALUES (2, 1, 1, '1', 0, 0, '2022-11-21 20:00:01');
 
 -- ----------------------------
 -- Table structure for article_tag
@@ -92,6 +113,10 @@ CREATE TABLE `article_tag`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of article_tag
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for cart
 -- ----------------------------
 DROP TABLE IF EXISTS `cart`;
@@ -100,7 +125,11 @@ CREATE TABLE `cart`  (
   `user_id` int(0) NULL DEFAULT NULL COMMENT '用户ID',
   `total_price` int(0) NULL DEFAULT NULL COMMENT '总金额（分）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cart
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for cart_goods
@@ -112,7 +141,11 @@ CREATE TABLE `cart_goods`  (
   `goods_id` int(0) NULL DEFAULT NULL COMMENT '商品ID',
   `goods_quantity` int(0) NULL DEFAULT 1 COMMENT '商品数量',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cart_goods
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for caution
@@ -130,6 +163,10 @@ CREATE TABLE `caution`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of caution
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for city
 -- ----------------------------
 DROP TABLE IF EXISTS `city`;
@@ -139,6 +176,10 @@ CREATE TABLE `city`  (
   `city_name` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '市名',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of city
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for discount_coupon
@@ -151,7 +192,11 @@ CREATE TABLE `discount_coupon`  (
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '优惠券名',
   `expiration_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '有效期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of discount_coupon
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for goods
@@ -170,7 +215,13 @@ CREATE TABLE `goods`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------
+INSERT INTO `goods` VALUES (1, 1, 1, 1, '11', '1111', 111, 111, 111, '2022-11-22 21:20:38', '2022-11-22 21:20:40');
+INSERT INTO `goods` VALUES (2, 2, 2, 2, '22', '2222', 222, 222, 222, '2022-11-22 21:20:42', '2022-11-22 21:20:45');
 
 -- ----------------------------
 -- Table structure for health_info
@@ -186,6 +237,10 @@ CREATE TABLE `health_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of health_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for merchant
 -- ----------------------------
 DROP TABLE IF EXISTS `merchant`;
@@ -198,7 +253,11 @@ CREATE TABLE `merchant`  (
   `registration_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '注册时间',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of merchant
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for merchant_comment
@@ -206,6 +265,7 @@ CREATE TABLE `merchant`  (
 DROP TABLE IF EXISTS `merchant_comment`;
 CREATE TABLE `merchant_comment`  (
   `id` int(0) NOT NULL COMMENT '商品评价ID',
+  `goods_id` int(0) NULL DEFAULT NULL COMMENT '商品id',
   `reviewer_id` int(0) NULL DEFAULT NULL COMMENT '评论者ID',
   `replier_id` int(0) NULL DEFAULT NULL COMMENT '回复者ID',
   `type` tinyint(0) NOT NULL COMMENT '内容类型（0文本，1表情包，2图片）',
@@ -217,6 +277,12 @@ CREATE TABLE `merchant_comment`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of merchant_comment
+-- ----------------------------
+INSERT INTO `merchant_comment` VALUES (1, 1, 1, 1, 1, '1', 0, 0, '2022-11-22 22:18:58');
+INSERT INTO `merchant_comment` VALUES (2, 1, 1, 1, 1, '1', 0, 0, '2022-11-22 22:19:07');
+
+-- ----------------------------
 -- Table structure for merchant_images
 -- ----------------------------
 DROP TABLE IF EXISTS `merchant_images`;
@@ -225,7 +291,15 @@ CREATE TABLE `merchant_images`  (
   `merchant_id` int(0) NULL DEFAULT NULL COMMENT '商品ID',
   `image_url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of merchant_images
+-- ----------------------------
+INSERT INTO `merchant_images` VALUES (1, 1, '1');
+INSERT INTO `merchant_images` VALUES (2, 1, '1');
+INSERT INTO `merchant_images` VALUES (3, 1, '1');
+INSERT INTO `merchant_images` VALUES (4, 2, '2');
 
 -- ----------------------------
 -- Table structure for merchant_info
@@ -235,7 +309,12 @@ CREATE TABLE `merchant_info`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '商品信息ID',
   `detail_content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '具体内容',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of merchant_info
+-- ----------------------------
+INSERT INTO `merchant_info` VALUES (1, '11111');
 
 -- ----------------------------
 -- Table structure for merchant_type
@@ -246,6 +325,10 @@ CREATE TABLE `merchant_type`  (
   `type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of merchant_type
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for message_info
@@ -264,6 +347,10 @@ CREATE TABLE `message_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of message_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for order_info
 -- ----------------------------
 DROP TABLE IF EXISTS `order_info`;
@@ -277,11 +364,18 @@ CREATE TABLE `order_info`  (
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单标题',
   `total_fee` int(0) NULL DEFAULT NULL COMMENT '订单金额（分）',
   `code_url` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单二维码链接',
-  `order_status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单状态（待发货，已发货，待收货，已完成，待退款）',
+  `order_status` int(0) NULL DEFAULT NULL COMMENT '订单状态（0待发货，1已发货，2待收货，3已完成，4待退款）',
+  `order_remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单备注',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_info
+-- ----------------------------
+INSERT INTO `order_info` VALUES (1, 1, 1, 1, 1, 1, '1', 1, '1', 1, NULL, '2022-11-22 12:06:51', '2022-11-22 12:06:54');
+INSERT INTO `order_info` VALUES (2, 1, 1, 1, 1, 1, '1', 1, '1', 1, NULL, '2022-11-22 12:07:03', '2022-11-22 12:07:05');
 
 -- ----------------------------
 -- Table structure for payment_info
@@ -300,6 +394,10 @@ CREATE TABLE `payment_info`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of payment_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pet
@@ -322,6 +420,10 @@ CREATE TABLE `pet`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of pet
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for pet_variety
 -- ----------------------------
 DROP TABLE IF EXISTS `pet_variety`;
@@ -329,7 +431,11 @@ CREATE TABLE `pet_variety`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '宠物品种ID',
   `pet_variety_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '宠物品种名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pet_variety
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for platform_administrator
@@ -347,6 +453,10 @@ CREATE TABLE `platform_administrator`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of platform_administrator
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for province
 -- ----------------------------
 DROP TABLE IF EXISTS `province`;
@@ -355,6 +465,10 @@ CREATE TABLE `province`  (
   `province_name` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '省名',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of province
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for refund_info
@@ -374,7 +488,11 @@ CREATE TABLE `refund_info`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of refund_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for region
@@ -386,6 +504,10 @@ CREATE TABLE `region`  (
   `region` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '区名',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of region
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for session
@@ -401,6 +523,10 @@ CREATE TABLE `session`  (
   `deleted` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否删除（0未删除，1已删除）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of session
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -420,7 +546,13 @@ CREATE TABLE `user`  (
   `registration_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '注册时间',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后一次登录时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '11', '1', 'http://jialianjie.com/jiatupian.png', '男', '1', 1, '1', '1', '1', '2022-11-20 18:09:06', '2022-11-20 18:09:09');
+INSERT INTO `user` VALUES (2, '22', '2', 'http://jialianjie.com/jiatupian.png', '男', '2', 2, '2', '2', '2', '2022-11-20 18:09:21', '2022-11-20 18:09:24');
 
 -- ----------------------------
 -- Table structure for user_follow
@@ -434,6 +566,10 @@ CREATE TABLE `user_follow`  (
   `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_follow
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for video
@@ -451,7 +587,13 @@ CREATE TABLE `video`  (
   `like_count` int(0) NULL DEFAULT NULL COMMENT '点赞数(默认0)',
   `collection_count` int(0) NULL DEFAULT NULL COMMENT '收藏数(默认0)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of video
+-- ----------------------------
+INSERT INTO `video` VALUES (1, 1, 1, '1', '12345678', '2022-11-21 22:05:50', '1', '1', 1, 1);
+INSERT INTO `video` VALUES (2, 2, 2, '2', '23456789', '2022-11-21 22:05:55', '2', '2', 2, 2);
 
 -- ----------------------------
 -- Table structure for video_collection
@@ -467,6 +609,10 @@ CREATE TABLE `video_collection`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of video_collection
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for video_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `video_comment`;
@@ -479,7 +625,13 @@ CREATE TABLE `video_comment`  (
   `is_read` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否已读（0未读，1已读）',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of video_comment
+-- ----------------------------
+INSERT INTO `video_comment` VALUES (1, 1, 1, '1', 0, 0, '2022-11-21 22:25:20');
+INSERT INTO `video_comment` VALUES (2, 1, 1, '1', 0, 0, '2022-11-21 22:25:30');
 
 -- ----------------------------
 -- Table structure for video_tag
@@ -491,5 +643,9 @@ CREATE TABLE `video_tag`  (
   `tag_id` int(0) NULL DEFAULT NULL COMMENT '标签ID',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of video_tag
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
