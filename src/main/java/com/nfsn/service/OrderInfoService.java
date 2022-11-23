@@ -11,4 +11,5 @@ import com.nfsn.model.entity.OrderInfo;
 */
 public interface OrderInfoService extends IService<OrderInfo> {
 
+    String getPaymentCountByGoodsId(Integer merchantId);
 }

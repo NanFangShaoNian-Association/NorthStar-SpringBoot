@@ -1,12 +1,12 @@
 package com.nfsn.controller.user;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.nfsn.model.entity.Goods;
+import com.nfsn.model.entity.*;
 import com.nfsn.model.vo.GoodVO;
 import com.nfsn.model.vo.UserGoodListVO;
 import com.nfsn.model.vo.UserGoodVO;
-import com.nfsn.service.GoodsService;
-import com.nfsn.service.MerchantImagesService;
+import com.nfsn.model.vo.VideoListVO;
+import com.nfsn.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.nfsn.constants.VideoConstans.VIDEO_INTRODUCTION_LONG;
 
 /**
  * @ClassName: UserGoodController
@@ -31,11 +34,20 @@ import java.util.List;
 @Api("用户商品操作类")
 public class UserGoodController {
 
-    @Autowired
+    @Resource
     private GoodsService goodsService;
 
-    @Autowired
+    @Resource
     private MerchantImagesService merchantImagesService;
+
+    @Resource
+    private OrderInfoService orderInfoService;
+
+    @Resource
+    private MerchantInfoService merchantInfoService;
+
+    @Resource
+    private MerchantCommentService merchantCommentService;
 
     /**
      * 查询商品列表
@@ -44,27 +56,48 @@ public class UserGoodController {
     @GetMapping("/list")
     @ApiOperation("获取用户浏览商品列表")
     public List<UserGoodListVO> list(){
-//        UserGoodListVO userGoodListVO = new UserGoodListVO();
-//        Goods goods = goodsService;
-        return null;
+        List<UserGoodListVO> userGoodsListVOS = new ArrayList<>();
+
+        List<Goods> goodsList = goodsService.getGoodsList();
+
+        //将goodsList封装进userGoodsListVOS
+        for (int i = 0; i < goodsList.size(); i++) {
+            UserGoodListVO userGoodsListVO = new UserGoodListVO();
+            Goods goods = goodsList.get(i);
+
+            BeanUtils.copyProperties(goods,userGoodsListVO);
+            userGoodsListVO.setImage(merchantImagesService.getGoodsOneImageByGoodsId(goods.getMerchantId()));
+            userGoodsListVO.setPaymentCount(orderInfoService.getPaymentCountByGoodsId(goods.getMerchantId()));
+
+            userGoodsListVOS.add(userGoodsListVO);
+        }
+
+        return userGoodsListVOS;
     }
 
     @GetMapping("/getGood/{goodId}")
     @ApiOperation("获取用户浏览商品详情")
     public UserGoodVO getGood(@PathVariable("goodId") String goodId){
-        // TODO 未完成
 
         UserGoodVO userGoodVO = new UserGoodVO();
+
         GoodVO goodVO = new GoodVO();
 
         // 1.查询
         // 1.1 根据商品id查询商品信息实体
         Goods goods = goodsService.getGoodsById(goodId);
+
+        if (goods == null) {
+            return null;
+        }
+
         // 1.2 根据商品id查询商品图片列表
+        goodVO.setImages(merchantImagesService.getGoodsImagesByGoodsId(goodId));
+
         // 1.3 根据商品id查询商品信息具体内容
-
+        goodVO.setMerchantInfoDetailContent(merchantInfoService.getMerchantInfoDetailContentByGoodsId(goods.getMerchantInfoId()));
         // 1.4 根据商品id查询评论实体
-
+        userGoodVO.setGoodComment(merchantCommentService.getGoodsCommentListByGoodsId(goodId));
 
         // 2.转换
         BeanUtils.copyProperties(goods,goodVO);

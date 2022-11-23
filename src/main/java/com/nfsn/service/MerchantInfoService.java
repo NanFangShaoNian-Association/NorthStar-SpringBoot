@@ -10,4 +10,5 @@ import com.nfsn.model.entity.MerchantInfo;
 */
 public interface MerchantInfoService extends IService<MerchantInfo> {
 
+    String getMerchantInfoDetailContentByGoodsId(int merchantInfoId);
 }

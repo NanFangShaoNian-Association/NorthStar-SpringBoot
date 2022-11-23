@@ -41,8 +41,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
      */
     @Override
     public List<Video> getVideoList() {
-        List<Video> videoList = videoMapper.selectList(null);
-        return videoList;
+        return videoMapper.selectList(null);
     }
 
     @Override

@@ -13,4 +13,7 @@ import java.util.List;
 */
 public interface MerchantImagesService extends IService<MerchantImages> {
 
+    String getGoodsOneImageByGoodsId(Integer merchantId);
+
+    List<String> getGoodsImagesByGoodsId(String goodId);
 }

@@ -2,6 +2,9 @@ package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.MerchantComment;
+import com.nfsn.model.vo.GoodCommentVO;
+
+import java.util.List;
 
 
 /**
@@ -11,4 +14,5 @@ import com.nfsn.model.entity.MerchantComment;
 */
 public interface MerchantCommentService extends IService<MerchantComment> {
 
+    List<GoodCommentVO> getGoodsCommentListByGoodsId(String goodId);
 }
