@@ -71,10 +71,16 @@ public class OrderInfo implements Serializable {
     private String codeUrl;
 
     /**
-     * 订单状态（待发货，已发货，待收货，已完成，待退款）
+     * 订单状态（0待发货，1已发货，2待收货，3已完成，4待退款）
      */
     @TableField(value = "order_status")
-    private String orderStatus;
+    private Integer orderStatus;
+
+    /**
+     * 订单备注
+     */
+    @TableField(value = "order_remark")
+    private String orderRemark;
 
     /**
      * 创建时间

@@ -6,6 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MerchantComment">
             <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="goods_id" column="goods_id" jdbcType="INTEGER"/>
             <result property="reviewer_id" column="reviewer_id" jdbcType="INTEGER"/>
             <result property="replier_id" column="replier_id" jdbcType="INTEGER"/>
             <result property="type" column="type" jdbcType="TINYINT"/>
@@ -16,7 +17,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,reviewer_id,replier_id,
+        id,goods_id,reviewer_id,replier_id,
         type,content,deleted,
         is_read,create_time
     </sql>

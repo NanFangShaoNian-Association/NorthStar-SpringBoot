@@ -48,11 +48,11 @@ public class UserOrderRequest implements Serializable {
     @ApiModelProperty("订单备注")
     private String orderMark;
 
-    /**
-     * 商品总价
-     */
-    @ApiModelProperty("商品总价")
-    private Integer totalPrice;
+//    /**
+//     * 商品总价
+//     */
+//    @ApiModelProperty("商品总价")
+//    private Integer totalPrice;
 
     /**
      * 优惠券id（如果使用就填上）
@@ -60,11 +60,11 @@ public class UserOrderRequest implements Serializable {
     @ApiModelProperty("优惠券id（如果使用就填上）")
     private Integer discountCouponId;
 
-    /**
-     * 商品实际金额
-     */
-    @ApiModelProperty("商品实际金额")
-    private Integer actualPrice;
+//    /**
+//     * 商品实际金额
+//     */
+//    @ApiModelProperty("商品实际金额")
+//    private Integer actualPrice;
 
     /**
      * 支付方式（支付宝0，微信1）

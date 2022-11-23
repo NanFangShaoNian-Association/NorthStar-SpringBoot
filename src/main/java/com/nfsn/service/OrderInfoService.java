@@ -1,6 +1,7 @@
 package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nfsn.model.dto.UserOrderRequest;
 import com.nfsn.model.entity.OrderInfo;
 
 
@@ -12,4 +13,6 @@ import com.nfsn.model.entity.OrderInfo;
 public interface OrderInfoService extends IService<OrderInfo> {
 
     String getPaymentCountByGoodsId(Integer merchantId);
+
+    void insertOrder(UserOrderRequest userOrderRequest);
 }
