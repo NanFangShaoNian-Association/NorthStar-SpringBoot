@@ -24,10 +24,10 @@ public class CartGoods implements Serializable {
     private Integer id;
 
     /**
-     * 购物车ID
+     * 用户ID
      */
-    @TableField(value = "cart_id")
-    private Integer cartId;
+    @TableField(value = "user_id")
+    private Integer userId;
 
     /**
      * 商品ID
