@@ -42,9 +42,27 @@ public class UserAddressVO implements Serializable {
     private String place;
 
     /**
-     * 地址
+     * 省
      */
-    @ApiModelProperty("地址")
+    @ApiModelProperty("省")
+    private String province;
+
+    /**
+     * 市
+     */
+    @ApiModelProperty("市")
+    private String city;
+
+    /**
+     * 区
+     */
+    @ApiModelProperty("区")
+    private String region;
+
+    /**
+     * 详细地址
+     */
+    @ApiModelProperty("详细地址")
     private String address;
 
     /**

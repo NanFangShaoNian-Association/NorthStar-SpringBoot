@@ -63,7 +63,7 @@ public class Address implements Serializable {
     /**
      * 手机号
      */
-    @TableField(value = "phoneNumber")
+    @TableField(value = "phone_number")
     private String phoneNumber;
 
     /**
