@@ -15,5 +15,5 @@ public interface MerchantImagesService extends IService<MerchantImages> {
 
     String getGoodsOneImageByGoodsId(Integer merchantId);
 
-    List<String> getGoodsImagesByGoodsId(String goodId);
+    List<String> getGoodsImagesByGoodsId(int goodId);
 }

@@ -77,7 +77,7 @@ public class UserGoodController {
 
     @GetMapping("/getGood/{goodId}")
     @ApiOperation("获取用户浏览商品详情")
-    public UserGoodVO getGood(@PathVariable("goodId") String goodId){
+    public UserGoodVO getGood(@PathVariable("goodId") int goodId){
 
         UserGoodVO userGoodVO = new UserGoodVO();
 

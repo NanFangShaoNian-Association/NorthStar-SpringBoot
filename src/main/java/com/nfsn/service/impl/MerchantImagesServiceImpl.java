@@ -45,7 +45,7 @@ implements MerchantImagesService{
      * @return
      */
     @Override
-    public List<String> getGoodsImagesByGoodsId(String goodId) {
+    public List<String> getGoodsImagesByGoodsId(int goodId) {
 
         List<String> goodsImageList = new ArrayList<>();
 

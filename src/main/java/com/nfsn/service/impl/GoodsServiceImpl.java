@@ -36,7 +36,7 @@ implements GoodsService{
      * @return
      */
     @Override
-    public Goods getGoodsById(String goodId) {
+    public Goods getGoodsById(int goodId) {
         return cacheClient.queryWithPassThrough(CACHE_GOODS_KEY, goodId, Goods.class, this::getById, CACHE_GOODS_TTL, TimeUnit.MINUTES);
     }
 
