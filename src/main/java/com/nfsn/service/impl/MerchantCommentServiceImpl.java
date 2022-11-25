@@ -29,7 +29,7 @@ implements MerchantCommentService{
     private MerchantCommentMapper merchantCommentMapper;
 
     @Override
-    public List<GoodCommentVO> getGoodsCommentListByGoodsId(String goodId) {
+    public List<GoodCommentVO> getGoodsCommentListByGoodsId(int goodId) {
         List<GoodCommentVO> goodsCommentVOList = new ArrayList<>();
         HashMap<String, Object> map = new HashMap<>();
         map.put("goods_id",goodId);
