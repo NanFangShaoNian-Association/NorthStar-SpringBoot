@@ -1,5 +1,7 @@
 package com.nfsn.controller.user;
 
+import com.nfsn.model.dto.AddCartRequest;
+import com.nfsn.model.dto.AddVideoRequest;
 import com.nfsn.model.entity.CartGoods;
 import com.nfsn.model.entity.Goods;
 import com.nfsn.model.vo.CartItemVO;
@@ -10,10 +12,7 @@ import com.nfsn.service.MerchantImagesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class UserCartController {
 
     @GetMapping("/list/{userId}")
     @ApiOperation("获取购物车列表")
-    public List<CartItemVO> list(@PathVariable("userId") String userId){
+    public List<CartItemVO> list(@PathVariable("userId") Integer userId){
 //        CartVO cartVO = new CartVO();
         List<CartItemVO> cartItemVOList = new ArrayList<>();
         //使用用户id从CartGoods表中查出购物车的所有商品的列表
@@ -63,6 +62,13 @@ public class UserCartController {
 
 
         return cartItemVOList;
+    }
+
+    // TODO 将商品加入购物车
+    @PostMapping("/addToCart")
+    @ApiOperation("加入购物车")
+    public void addToCart(@RequestBody AddCartRequest addCartRequest){
+        cartGoodsService.insertGoodsToCart(addCartRequest);
     }
 
 //    //获取好友信息

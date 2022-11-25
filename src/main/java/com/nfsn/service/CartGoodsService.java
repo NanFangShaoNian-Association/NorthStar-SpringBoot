@@ -1,6 +1,7 @@
 package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nfsn.model.dto.AddCartRequest;
 import com.nfsn.model.entity.CartGoods;
 
 import java.util.List;
@@ -12,5 +13,7 @@ import java.util.List;
 */
 public interface CartGoodsService extends IService<CartGoods> {
 
-    List<CartGoods> getCartGoodsByUserId(String userId);
+    List<CartGoods> getCartGoodsByUserId(Integer userId);
+
+    void insertGoodsToCart(AddCartRequest addCartRequest);
 }
