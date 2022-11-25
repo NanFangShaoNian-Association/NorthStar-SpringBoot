@@ -1,5 +1,6 @@
 package com.nfsn.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.map.MapUtil;
 import com.nfsn.common.RedisData;
 import com.nfsn.constants.ResultCode;
@@ -90,8 +91,7 @@ public class LoginServiceImpl {
         log.info("目标手机号：{}，token：{}存储成功",loginRequest.getPhone(),token);
 
         //封装token返回
-        LoginVO loginVO = new LoginVO();
-        loginVO.setId(user.getId());
+        LoginVO loginVO = BeanUtil.copyProperties(user, LoginVO.class);
         loginVO.setToken(token);
         loginVO.setRoleId(0);
 
