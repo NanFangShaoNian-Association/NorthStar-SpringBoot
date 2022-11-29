@@ -5,9 +5,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 
@@ -71,7 +72,7 @@ public class OrderInfo implements Serializable {
     private String codeUrl;
 
     /**
-     * 订单状态（0待发货，1已发货，2待收货，3已完成，4待退款）
+     * 订单状态（0待支付，1待发货，2已发货，3待收货，4已完成，5待退款）
      */
     @TableField(value = "order_status")
     private Integer orderStatus;

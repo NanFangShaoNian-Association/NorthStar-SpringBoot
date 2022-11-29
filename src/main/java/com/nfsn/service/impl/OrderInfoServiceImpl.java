@@ -1,14 +1,25 @@
 package com.nfsn.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.IdUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.nfsn.constants.OrderStatus;
 import com.nfsn.mapper.OrderInfoMapper;
+import com.nfsn.model.dto.CreateOrderRequest;
 import com.nfsn.model.dto.UserOrderRequest;
-import com.nfsn.model.entity.MerchantImages;
+import com.nfsn.model.entity.Goods;
 import com.nfsn.model.entity.OrderInfo;
+import com.nfsn.model.entity.User;
+import com.nfsn.model.vo.UserOrderListVO;
+import com.nfsn.model.vo.UserOrderVO;
+import com.nfsn.service.GoodsService;
 import com.nfsn.service.OrderInfoService;
+import com.nfsn.utils.AccountHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +34,9 @@ implements OrderInfoService{
 
     @Resource
     private OrderInfoMapper orderInfoMapper;
+
+    @Resource
+    private GoodsService goodsService;
 
     /**
      * 通过商品id查询该商品的付款人数
@@ -67,8 +81,68 @@ implements OrderInfoService{
 
             orderInfoMapper.insert(orderInfo);
         }
+    }
 
+    /**
+     * 创建订单并返回订单信息
+     *
+     * @param createOrderRequest 创建支付订单传输实体
+     * @return 订单信息
+     */
+    @Override
+    public OrderInfo createOrder(CreateOrderRequest createOrderRequest) {
+        //查询商品
+        Goods good = goodsService.getOne(new LambdaQueryWrapper<Goods>().eq(Goods::getId, createOrderRequest.getGoodId()));
+        //商品不存在
+        if (good == null){
+            //todo：抛出商品编号不存在异常
+        }
+        //库存不足
+        if (good.getGoodsStocks() >= createOrderRequest.getCount()){
+            //todo：抛出商品库存不足异常
+        }
+        //封装订单信息
+        OrderInfo orderInfo = BeanUtil.copyProperties(createOrderRequest, OrderInfo.class);
+        orderInfo.setId((int) IdUtil.getSnowflake().nextId());//雪花算法生成id
+        orderInfo.setUserId(AccountHolder.getUser().getId());
+        orderInfo.setMerchantId(good.getMerchantId());
+        orderInfo.setOrderNo((int) IdUtil.getSnowflake().nextId());//雪花算法生成订单编号
+        orderInfo.setOrderStatus(OrderStatus.WAITING_PAID.getCode());//待支付
+        orderInfo.setCreateTime(new Date());
+        orderInfo.setUpdateTime(new Date());
+        //创建订单信息
+        this.save(orderInfo);
+        return orderInfo;
+    }
 
+    @Override
+    public List<UserOrderListVO> listOrder() {
+        User user = AccountHolder.getUser();
+        //根据用户id查询并根据订单状态排序
+        LambdaQueryWrapper<OrderInfo> queryWrapper = new LambdaQueryWrapper<OrderInfo>()
+                .eq(OrderInfo::getUserId, user.getId())
+                .orderBy(true, true, OrderInfo::getOrderStatus);
+        List<OrderInfo> orderInfoList = this.list(queryWrapper);
+        List<UserOrderListVO> orderListVOList = BeanUtil.copyToList(orderInfoList, UserOrderListVO.class);
+
+        //参数补全
+
+        return orderListVOList;
+    }
+
+    @Override
+    public UserOrderVO getOrder(Integer orderId) {
+        User user = AccountHolder.getUser();
+        //根据用户id和订单id查询订单
+        LambdaQueryWrapper<OrderInfo> queryWrapper = new LambdaQueryWrapper<OrderInfo>()
+                .eq(OrderInfo::getUserId, user.getId())
+                .eq(OrderInfo::getOrderNo, orderId);
+        OrderInfo orderInfo = this.getOne(queryWrapper);
+        UserOrderVO userOrderVO = BeanUtil.copyProperties(orderInfo, UserOrderVO.class);
+
+        //参数补全
+
+        return userOrderVO;
     }
 
 }
