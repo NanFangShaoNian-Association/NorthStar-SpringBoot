@@ -1,10 +1,7 @@
 package com.nfsn.controller.common;
 
-import com.nfsn.model.dto.AddVideoRequest;
-import com.nfsn.model.entity.ArticleComment;
 import com.nfsn.model.entity.Video;
 import com.nfsn.model.entity.VideoComment;
-import com.nfsn.model.vo.ArticleCommentVO;
 import com.nfsn.model.vo.VideoCommentVO;
 import com.nfsn.model.vo.VideoListVO;
 import com.nfsn.model.vo.VideoVO;
@@ -14,7 +11,10 @@ import com.nfsn.service.VideoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -93,10 +93,5 @@ public class VideoController {
         // 封装评论数
         videoVO.setCommentCount(videoCommentList.size());
         return videoVO;
-    }
-
-    @PostMapping("/addVideo")
-    @ApiOperation("发布视频")
-    public void addVideo(@RequestBody AddVideoRequest addVideoRequest){
     }
 }
