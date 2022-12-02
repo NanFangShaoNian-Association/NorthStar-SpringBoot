@@ -53,6 +53,14 @@ public class GlobalExceptionHandler {
         return new Result(-1,e.getCause().toString(), null);
     }
 
+    //todo:支付异常拦截
+
+    //空指针异常
+    @ExceptionHandler(NullPointerException.class)
+    public Result internalExceptionHandler(HttpServletRequest req, NullPointerException e) {
+        log.error("出现NullPointerException异常：",e);
+        return Result.failure(ResultCode.PARAM_IS_BLANK, e.getMessage());
+    }
 
     //其他异常拦截
     @ExceptionHandler(Exception.class)

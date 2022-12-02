@@ -1,22 +1,20 @@
 package com.nfsn.controller.common;
 
-import com.nfsn.mapper.ArticleCommentMapper;
-import com.nfsn.model.dto.AddArticleRequest;
 import com.nfsn.model.entity.Article;
 import com.nfsn.model.entity.ArticleComment;
-import com.nfsn.model.entity.Video;
 import com.nfsn.model.vo.ArticleCommentVO;
 import com.nfsn.model.vo.ArticleListVO;
 import com.nfsn.model.vo.ArticleVO;
-import com.nfsn.model.vo.VideoListVO;
 import com.nfsn.service.ArticleCommentService;
 import com.nfsn.service.ArticleService;
 import com.nfsn.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -110,10 +108,4 @@ public class ArticleController {
 
         return articleVO;
     }
-
-    @PostMapping("/addArticle")
-    @ApiOperation("发布文章")
-    public void addArticle(@RequestBody AddArticleRequest addArticleRequest){
-    }
-
 }

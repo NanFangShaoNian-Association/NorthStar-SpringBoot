@@ -1,11 +1,14 @@
 package com.nfsn.controller.user;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserArticleException;
 import com.nfsn.model.dto.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
+import com.nfsn.model.vo.PetVarietyListVO;
 import com.nfsn.model.vo.PetsListVO;
 import com.nfsn.service.PetService;
+import com.nfsn.service.PetVarietyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -30,6 +33,9 @@ public class PetController {
 
     @Resource
     private PetService petService;
+
+    @Resource
+    private PetVarietyService petVarietyService;
 
     //获取宠物列表
     @ApiOperation("获取宠物列表")
@@ -67,4 +73,15 @@ public class PetController {
     public void updatePet(@RequestBody UpdatePetRequest updatePetRequest) {
         petService.updatePet(updatePetRequest);
     }
+
+    //获取宠物列表
+    @ApiOperation("获取宠物品种")
+    @GetMapping("/listPetVariety")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户身份令牌", dataType = "String", required = true)
+    })
+    public List<PetVarietyListVO> listPetVariety() {
+        return BeanUtil.copyToList(petVarietyService.list(),PetVarietyListVO.class);
+    }
+
 }

@@ -2,7 +2,9 @@ package com.nfsn.advice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nfsn.anno.RawResource;
 import com.nfsn.common.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 @RestControllerAdvice(basePackages = {"com.nfsn.controller"})
+@Slf4j
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     @Autowired
     private ObjectMapper objectMapper;
@@ -30,9 +33,17 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
      */
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+
+        //判断是否存在该注解，存在则无需封装返回的数据
+        if (returnType.hasMethodAnnotation(RawResource.class)){
+            log.info("存在RawResource，无需封装");
+            return body;
+        }
+
         //处理字符串类型数据，如果Controller返回String的话，SpringBoot是直接返回.
         if (body instanceof String) {
             try {
+                log.info("为字符串数据，无需封装");
                 return objectMapper.writeValueAsString(Result.success(body));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();

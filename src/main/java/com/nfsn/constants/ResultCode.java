@@ -33,6 +33,7 @@ public enum ResultCode {
     INTERNAL_ERROR(5001,"服务器内部错误，请联系开发人员"),
     PARAMETER_CONVERSION_ERROR(5002,"参数转换错误，请检查您发送的参数是否合法");
 
+
     /**
      * 状态码
      */
