@@ -38,7 +38,7 @@ public class VideoListVO implements Serializable {
      * 内容（截取一段，两行）
      */
     @ApiModelProperty("内容")
-    private String articleContent;
+    private String videoContent;
 
     /**
      * 点赞数
