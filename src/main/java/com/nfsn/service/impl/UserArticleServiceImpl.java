@@ -1,6 +1,7 @@
 package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.nfsn.exception.UserArticleException;
 import com.nfsn.model.dto.AddArticleRequest;
@@ -56,6 +57,8 @@ public class UserArticleServiceImpl {
         //补全所有的值
         for (int i = 0; i < articleListVOS.size(); i++) {
             articleListVOS.get(i).setUserName(user.getUserName());
+            //内容（截取一段，两行，暂定两行字符数为18）
+            articleListVOS.get(i).setArticleContent(articleListVOS.get(i).getArticleContent().substring(0,18));
         }
         log.info("文章响应列表实体为：{}",articleListVOS);
         return articleListVOS;
@@ -82,6 +85,8 @@ public class UserArticleServiceImpl {
         articleVO.setUserName(user.getUserName());
         articleVO.setComments(articleCommentsVO);
         articleVO.setCommentCount(articleCommentsVO.size());
+        //转换图片列表
+        articleVO.setImages(StrUtil.split(article.getArticleUrl(), "|"));
 //            articleVO.setIntroduction();//数据库暂无此字段
         return articleVO;
     }

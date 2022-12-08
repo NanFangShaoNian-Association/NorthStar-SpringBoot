@@ -56,7 +56,7 @@ public class VideoController {
             Video video = videoList.get(i);
             BeanUtils.copyProperties(video,videoListVO);
             videoListVO.setUserName(userService.getUserNameById(video.getUserId()));
-            videoListVO.setArticleContent(video.getVideoContent().substring(0,VIDEO_INTRODUCTION_LONG));
+            videoListVO.setVideoContent(video.getVideoContent().substring(0,VIDEO_INTRODUCTION_LONG));
             videoListVOList.add(videoListVO);
         }
 

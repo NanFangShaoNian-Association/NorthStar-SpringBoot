@@ -24,6 +24,12 @@ public class AddVideoRequest implements Serializable {
     private String videoUrl;
 
     /**
+     * 内容
+     */
+    @ApiModelProperty("内容")
+    private String videoContent;
+
+    /**
      * 标题
      */
     @ApiModelProperty("标题")

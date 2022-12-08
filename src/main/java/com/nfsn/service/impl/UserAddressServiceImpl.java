@@ -57,15 +57,10 @@ public class UserAddressServiceImpl {
      * @param updateAddressRequest 更新地址信息传输实体
      */
     public void updateAddress(UpdateAddressRequest updateAddressRequest) {
-        String[] places = updateAddressRequest.getPlace().split("-");
         Address address = BeanUtil.copyProperties(updateAddressRequest, Address.class);
         address.setDeleted(0);
         address.setUpdateTime(new Date());
         address.setCreateTime(new Date());
-        //todo:省市区id
-//        address.setProvinceId();
-//        address.setCityId();
-//        address.setRegionId();
 
         addressService.save(address);
     }
