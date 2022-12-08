@@ -40,7 +40,6 @@ implements CartGoodsService{
      * @param goodsId 商品id
      * @return
      */
-//    @Override
     public List<CartGoods> getCartGoodsByGoodsIdAndUserId(Integer goodsId,Integer userId) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("user_id",userId);
@@ -73,6 +72,4 @@ implements CartGoodsService{
 
         cartGoodsMapper.insert(cartGoods);
     }
-
-
 }
