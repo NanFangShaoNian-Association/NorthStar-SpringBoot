@@ -24,6 +24,23 @@ public class UpdateAddressRequest implements Serializable {
     private Integer id;
 
     /**
+     * 省ID
+     */
+    @ApiModelProperty("省ID")
+    private Integer provinceId;
+
+    /**
+     * 市ID
+     */
+    @ApiModelProperty("市ID")
+    private Integer cityId;
+
+    /**
+     * 区ID
+     */
+    @ApiModelProperty("区ID")
+    private Integer regionId;
+    /**
      * 用户id
      */
     @ApiModelProperty("用户id")
@@ -40,12 +57,6 @@ public class UpdateAddressRequest implements Serializable {
      */
     @ApiModelProperty("手机号")
     private String phoneNumber;
-
-    /**
-     * 所在地区（省、市、区），填写示例：广东省-广州市-黄埔区
-     */
-    @ApiModelProperty("所在地区（省、市、区），填写示例：广东省-广州市-黄埔区")
-    private String place;
 
     /**
      * 详细地址

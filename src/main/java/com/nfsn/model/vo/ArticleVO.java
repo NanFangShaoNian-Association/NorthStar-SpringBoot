@@ -38,16 +38,16 @@ public class ArticleVO implements Serializable {
     private String userName;
 
     /**
-     * 简介
-     */
-    @ApiModelProperty("简介")
-    private String introduction;
-
-    /**
      * 内容
      */
     @ApiModelProperty("内容")
     private String articleContent;
+
+    /**
+     * 图片列表
+     */
+    @ApiModelProperty("内容")
+    private List<String> images;
 
     /**
      * 发表时间
