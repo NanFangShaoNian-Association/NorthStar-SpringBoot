@@ -1,12 +1,18 @@
 package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.nfsn.model.dto.UpdateAddressRequest;
-import com.nfsn.model.entity.Address;
-import com.nfsn.model.entity.User;
+import com.nfsn.model.entity.*;
+import com.nfsn.model.vo.CityVO;
+import com.nfsn.model.vo.ProvinceVO;
+import com.nfsn.model.vo.RegionVO;
 import com.nfsn.model.vo.UserAddressVO;
 import com.nfsn.service.AddressService;
+import com.nfsn.service.CityService;
+import com.nfsn.service.ProvinceService;
+import com.nfsn.service.RegionService;
 import com.nfsn.utils.AccountHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,6 +33,15 @@ public class UserAddressServiceImpl {
 
     @Resource
     private AddressService addressService;
+
+    @Resource
+    private ProvinceService provinceService;
+
+    @Resource
+    private CityService cityService;
+
+    @Resource
+    private RegionService regionService;
 
     /**
      * 获取地址列表
@@ -74,5 +89,40 @@ public class UserAddressServiceImpl {
         addressService.update(new LambdaUpdateWrapper<Address>()
                 .eq(Address::getId,addressId)
                 .set(Address::getDeleted,1));//设置已删除
+    }
+
+    /**
+     * 获取省信息
+     *
+     * @return
+     */
+    public List<ProvinceVO> listProvince() {
+        List<Province> provinceList = provinceService.list();
+        List<ProvinceVO> provinceVOS = BeanUtil.copyToList(provinceList, ProvinceVO.class);
+        return provinceVOS;
+    }
+
+    /**
+     * 获取市信息
+     *
+     * @param provinceId
+     * @return
+     */
+    public List<CityVO> listCity(Integer provinceId) {
+        List<City> cityList = cityService.list(new LambdaQueryWrapper<City>().eq(City::getProvinceId, provinceId));;
+        List<CityVO> cityVOS = BeanUtil.copyToList(cityList, CityVO.class);
+        return cityVOS;
+    }
+
+    /**
+     * 获取区信息
+     *
+     * @param cityId
+     * @return
+     */
+    public List<RegionVO> listRegion(Integer cityId) {
+        List<Region> regionList = regionService.list(new LambdaQueryWrapper<Region>().eq(Region::getCityId, cityId));
+        List<RegionVO> regionVOS = BeanUtil.copyToList(regionList, RegionVO.class);
+        return regionVOS;
     }
 }

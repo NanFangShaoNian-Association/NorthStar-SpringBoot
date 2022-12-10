@@ -3,6 +3,9 @@ package com.nfsn.controller.user;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserVideoException;
 import com.nfsn.model.dto.UpdateAddressRequest;
+import com.nfsn.model.vo.CityVO;
+import com.nfsn.model.vo.ProvinceVO;
+import com.nfsn.model.vo.RegionVO;
 import com.nfsn.model.vo.UserAddressVO;
 import com.nfsn.service.impl.UserAddressServiceImpl;
 import io.swagger.annotations.Api;
@@ -34,6 +37,41 @@ public class UserAddressController {
     @GetMapping("/list")
     public List<UserAddressVO> list() {
         return userAddressService.list();
+    }
+
+    //获取省信息
+    @ApiOperation("获取省信息")
+    @GetMapping("/getProvince")
+    public List<ProvinceVO> listProvince() {
+        return userAddressService.listProvince();
+    }
+
+    //获取市信息
+    @ApiOperation("获取市信息")
+    @GetMapping("/getCity/{provinceId}")
+    public List<CityVO> listCity(@PathVariable("provinceId") String provinceId) {
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(provinceId);
+        } catch (NumberFormatException e) {
+            log.error("UserAddressController getCity 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        return userAddressService.listCity(value);
+    }
+
+    //获取区信息
+    @ApiOperation("获取区信息")
+    @GetMapping("/getRegion/{cityId}")
+    public List<RegionVO> listRegion(@PathVariable("cityId") String cityId) {
+        Integer value = 0;
+        try {
+            value = Integer.valueOf(cityId);
+        } catch (NumberFormatException e) {
+            log.error("UserAddressController regionId 数值转换异常");
+            throw new UserVideoException(ResultCode.PARAM_IS_INVALID);
+        }
+        return userAddressService.listRegion(value);
     }
 
     //获取详细地址
