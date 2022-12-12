@@ -1,13 +1,15 @@
 package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserPetException;
 import com.nfsn.mapper.PetMapper;
-import com.nfsn.model.dto.PetVO;
+import com.nfsn.model.vo.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
 import com.nfsn.model.entity.Pet;
 import com.nfsn.model.entity.PetVariety;
@@ -52,9 +54,9 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet>
         ids.stream().forEach(id -> queryWrapper.or().eq(PetVariety::getId,id));
         //查询获取宠物品种名
         List<PetVariety> petVarieties = petVarietyService.list(queryWrapper);
-        //填充所有字段
-        List<PetsListVO> petsListVOS = BeanUtil.copyToList(petList, PetsListVO.class);
-        //填充宠物品种名
+        //填充所有字段，忽略出生日期字段
+        List<PetsListVO> petsListVOS = BeanUtil.copyToList(petList, PetsListVO.class, new CopyOptions().setIgnoreProperties("birthday"));
+        //填充宠物品种名，转换出生日期为年龄
         for (int i = 0; i < petsListVOS.size(); i++) {
             Integer varietyId = petList.get(i).getPetVarietyId();
             for (int j = 0; j < petVarieties.size(); j++) {
@@ -63,7 +65,8 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet>
                     break;
                 }
             }
-
+            //转换出生日期为年龄，按天数计算并转化
+            petsListVOS.get(i).setBirthday(DateUtil.ageOfNow(petList.get(i).getBirthday()));
         }
         return petsListVOS;
     }

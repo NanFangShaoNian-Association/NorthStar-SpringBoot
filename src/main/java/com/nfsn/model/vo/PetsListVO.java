@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @ClassName: PetsListVO
@@ -39,7 +38,7 @@ public class PetsListVO implements Serializable {
      * 出生日期
      */
     @ApiModelProperty("出生日期")
-    private Date birthday;
+    private Integer birthday;
 
     /**
      * 照片
