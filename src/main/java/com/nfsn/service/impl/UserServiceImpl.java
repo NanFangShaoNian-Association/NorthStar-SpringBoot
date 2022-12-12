@@ -1,10 +1,12 @@
 package com.nfsn.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.mapper.UserMapper;
 import com.nfsn.model.entity.User;
-import com.nfsn.model.entity.Video;
+import com.nfsn.model.vo.UserListVO;
 import com.nfsn.service.UserService;
 import com.nfsn.utils.RandomUtils;
 import org.springframework.stereotype.Service;
@@ -67,6 +69,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
 
         return user.getUserName();
+    }
+
+    /**
+     * 搜索用户（手机号、用户名）
+     *
+     * @param target
+     * @return
+     */
+    @Override
+    public List<UserListVO> searchUser(String target) {
+        String value = "";
+        if (StrUtil.isNotBlank(target)){
+            String[] temp = target.split("-");
+            if (temp.length >= 2){
+                value = target.substring(2);
+            }else {
+                value = target;
+            }
+        }
+
+        List<User> users = this.list(new LambdaQueryWrapper<User>()
+                .eq(User::getPhone, value)
+                .or()
+                .eq(User::getUserName, value));
+        List<UserListVO> listVOS = BeanUtil.copyToList(users, UserListVO.class);
+        return listVOS;
     }
 
     private String getRandomName(){
