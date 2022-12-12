@@ -11,6 +11,8 @@ import com.nfsn.model.vo.UserOrderVO;
 import com.nfsn.service.IPayService;
 import com.nfsn.service.OrderInfoService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -75,4 +77,18 @@ public class UserOrderController {
     public void refund(@PathVariable("orderId") String orderId) {
     }
 
+    /**
+     * 订单搜索（订单标题【暂定】）
+     *
+     * @return
+     */
+    @GetMapping("/searchOrder")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户令牌", dataType = "String", required = true),
+            @ApiImplicitParam(paramType = "query", name = "target", value = "查询字段，依据前缀查询，t为手机号，例：t-篮球", dataType = "String", dataTypeClass = String.class, required = true)
+    })
+    @ApiOperation("订单搜索（订单标题【暂定】）")
+    public List<UserOrderListVO> searchOrder(String target){
+        return orderInfoService.searchOrder(target);
+    }
 }

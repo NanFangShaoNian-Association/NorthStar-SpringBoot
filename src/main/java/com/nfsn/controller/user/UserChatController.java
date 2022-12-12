@@ -1,15 +1,17 @@
 package com.nfsn.controller.user;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.nfsn.model.dto.SearchRequest;
-import com.nfsn.model.vo.SearchUserVO;
 import com.nfsn.model.vo.UserListVO;
+import com.nfsn.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ import java.util.List;
 @RequestMapping("/users/chats")
 @Api("用户聊天操作类")
 public class UserChatController {
+    @Resource
+    private UserService userService;
 
     @GetMapping("/list/{userId}")
     @ApiImplicitParams(
@@ -39,10 +43,19 @@ public class UserChatController {
 //        return "list";
 //    }
 
-    //搜索（根据手机号/用户名）
-    @ApiOperation("搜索（根据手机号/用户名）")
-    @PostMapping("/merchant/search")
-    public Page<List<SearchUserVO>> searchMerchant(@RequestBody SearchRequest searchRequest){
-        return null;
+    /**
+     * 搜索用户（手机号、用户名）
+     *
+     * @return
+     */
+    @GetMapping("/searchUser")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户令牌", dataType = "String", required = true),
+            @ApiImplicitParam(paramType = "query", name = "target", value = "查询字段，依据前缀查询，p为手机号，u为用户名，例：u-李四", dataType = "String", dataTypeClass = String.class, required = true)
+    })
+    @ApiOperation("搜索用户（手机号、用户名）")
+    public List<UserListVO> searchUser(String target){
+        return userService.searchUser(target);
     }
+
 }

@@ -32,4 +32,6 @@ public interface OrderInfoService extends IService<OrderInfo> {
     List<UserOrderListVO> listOrder();
 
     UserOrderVO getOrder(Integer orderId);
+
+    List<UserOrderListVO> searchOrder(String target);
 }

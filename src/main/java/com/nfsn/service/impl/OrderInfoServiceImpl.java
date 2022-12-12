@@ -2,6 +2,7 @@ package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.constants.OrderStatus;
@@ -143,6 +144,30 @@ implements OrderInfoService{
         //参数补全
 
         return userOrderVO;
+    }
+
+    /**
+     * 订单搜索（订单标题【暂定】）
+     *
+     * @param target
+     * @return
+     */
+    @Override
+    public List<UserOrderListVO> searchOrder(String target) {
+        String value = "";
+        if (StrUtil.isNotBlank(target)){
+            String[] temp = target.split("-");
+            if (temp.length >= 2){
+                value = target.substring(2);
+            }else {
+                value = target;
+            }
+        }
+
+        List<OrderInfo> orderInfos = this.list(new LambdaQueryWrapper<OrderInfo>()
+                .eq(OrderInfo::getTitle, value));
+        List<UserOrderListVO> listVOS = BeanUtil.copyToList(orderInfos, UserOrderListVO.class);
+        return listVOS;
     }
 
 }
