@@ -1,7 +1,7 @@
 package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.nfsn.model.dto.PetVO;
+import com.nfsn.model.vo.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
 import com.nfsn.model.entity.Pet;
 import com.nfsn.model.vo.PetsListVO;

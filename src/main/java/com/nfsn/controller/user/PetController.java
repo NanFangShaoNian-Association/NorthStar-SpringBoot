@@ -3,7 +3,7 @@ package com.nfsn.controller.user;
 import cn.hutool.core.bean.BeanUtil;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserArticleException;
-import com.nfsn.model.dto.PetVO;
+import com.nfsn.model.vo.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
 import com.nfsn.model.vo.PetVarietyListVO;
 import com.nfsn.model.vo.PetsListVO;

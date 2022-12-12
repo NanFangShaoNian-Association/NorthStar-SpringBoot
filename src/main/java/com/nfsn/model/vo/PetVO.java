@@ -1,4 +1,4 @@
-package com.nfsn.model.dto;
+package com.nfsn.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
