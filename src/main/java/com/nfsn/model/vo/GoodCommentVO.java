@@ -14,7 +14,7 @@ import java.util.Date;
  * @Description: 商品评论响应实体
  */
 @Data
-@ApiModel("用户浏览商品详情响应实体")
+@ApiModel("商品评论响应实体")
 public class GoodCommentVO implements Serializable {
     private static final long serialVersionUID = 1L;
 

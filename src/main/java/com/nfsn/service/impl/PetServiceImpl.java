@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nfsn.constants.ResultCode;
 import com.nfsn.exception.UserPetException;
 import com.nfsn.mapper.PetMapper;
-import com.nfsn.model.dto.PetVO;
+import com.nfsn.model.vo.PetVO;
 import com.nfsn.model.dto.UpdatePetRequest;
 import com.nfsn.model.entity.Pet;
 import com.nfsn.model.entity.PetVariety;
