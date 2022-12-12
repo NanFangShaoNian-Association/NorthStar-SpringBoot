@@ -58,7 +58,8 @@ public class UserArticleServiceImpl {
         for (int i = 0; i < articleListVOS.size(); i++) {
             articleListVOS.get(i).setUserName(user.getUserName());
             //内容（截取一段，两行，暂定两行字符数为18）
-            articleListVOS.get(i).setArticleContent(articleListVOS.get(i).getArticleContent().substring(0,18));
+            String content = articleListVOS.get(i).getArticleContent();
+            articleListVOS.get(i).setArticleContent( content.length() < 18 ? content : content.substring(0, 18));
         }
         log.info("文章响应列表实体为：{}",articleListVOS);
         return articleListVOS;
