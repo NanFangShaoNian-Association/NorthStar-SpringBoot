@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("商家端商品订单操作类（暂无思路）")
 public class MerchantOrderController {
 
-    //获取订单列表
+    //获取订单列表：商品名、商品规格、商品价格、客户用户名
     @ApiOperation("获取订单列表")
     @GetMapping("/list/{merchantId}")
     public void list(@PathVariable("merchantId") Integer merchantId) {
     }
 
-    //发货
+    //发货：填写快递单号、快递公司
 
     //退货
 

@@ -66,6 +66,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result internalExceptionHandler(HttpServletRequest req, Exception e) {
         log.error("出现Exception异常：",e);
-        return Result.failure(ResultCode.INTERNAL_ERROR, null);
+        return new Result(ResultCode.INTERNAL_ERROR.getCode(),e.getCause().toString(), null);
     }
 }
