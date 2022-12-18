@@ -7,13 +7,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver              # mysql驱动包
     url: jdbc:mysql://localhost:3306/pet_platform?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false
     username: root
-    password: "010623"
+    password: xxx
     type: com.alibaba.druid.pool.DruidDataSource             # 当前数据源操作类型
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   redis:
-    host: 192.168.175.128
+    host: xxx
     port: 6379
     lettuce:
       pool:
@@ -21,3 +21,4 @@ spring:
         max-idle: 8   #最大空闲连接
         min-idle: 0   #最小空闲连接
         max-wait: 100ms #连接等待时间
+file-save-path: A:/uploadFile/          #文件路径
