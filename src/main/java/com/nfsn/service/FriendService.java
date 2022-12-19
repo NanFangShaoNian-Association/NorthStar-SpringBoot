@@ -13,5 +13,5 @@ import java.util.List;
 */
 public interface FriendService extends IService<Friend> {
 
-    List<UserListVO> listFriend(Integer userId);
+    List<UserListVO> listFriend();
 }

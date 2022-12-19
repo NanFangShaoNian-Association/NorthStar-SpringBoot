@@ -11,6 +11,7 @@ import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.UserListVO;
 import com.nfsn.service.FriendService;
 import com.nfsn.service.UserService;
+import com.nfsn.utils.AccountHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,8 @@ public class FriendServiceImpl extends ServiceImpl<FriendMapper, Friend>
     private UserService userService;
 
     @Override
-    public List<UserListVO> listFriend(Integer userId) {
+    public List<UserListVO> listFriend() {
+        Integer userId = AccountHolder.getUser().getId();
         //获取好友表中所有已通过验证的好友
         List<Friend> friendList = this.list(new LambdaQueryWrapper<Friend>()
                 .eq(Friend::getUser1Id, userId)
@@ -44,10 +46,11 @@ public class FriendServiceImpl extends ServiceImpl<FriendMapper, Friend>
             throw new UserException(ResultCode.PARAM_IS_INVALID);
         }
         List<Integer> friendIds = friendList.stream()
-                .filter(friend -> friend.getUser1Id().equals(friend.getUser2Id()))//过滤除自己之外的好友
+                .filter(friend -> !friend.getUser1Id().equals(friend.getUser2Id()))//过滤除自己之外的好友
                 .map(friend -> friend.getUser1Id().equals(userId) ? friend.getUser2Id() : friend.getUser1Id())//获取好友id
                 .collect(Collectors.toList());
 
+        log.info("friendIds：{}",friendIds);
         //获取好友对应的信息
         List<User> userList = userService.listByIds(friendIds);
 

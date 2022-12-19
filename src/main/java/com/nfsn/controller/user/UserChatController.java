@@ -1,7 +1,5 @@
 package com.nfsn.controller.user;
 
-import com.nfsn.constants.ResultCode;
-import com.nfsn.exception.UserArticleException;
 import com.nfsn.model.vo.UserListVO;
 import com.nfsn.service.FriendService;
 import com.nfsn.service.UserService;
@@ -39,15 +37,7 @@ public class UserChatController {
     )
     @ApiOperation("获取好友列表")
     public List<UserListVO> list(@PathVariable("userId") String userId){
-        Integer value = 0;
-        try {
-            value = Integer.valueOf(userId);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            throw new UserArticleException(ResultCode.PARAM_IS_INVALID);
-        }
-
-        return friendService.listFriend(value);
+        return friendService.listFriend();
     }
 
 //    //获取好友信息
