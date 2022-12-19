@@ -3,6 +3,8 @@ package com.nfsn.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.nfsn.constants.ResultCode;
+import com.nfsn.exception.UserException;
 import com.nfsn.mapper.FriendMapper;
 import com.nfsn.model.entity.Friend;
 import com.nfsn.model.entity.User;
@@ -38,6 +40,9 @@ public class FriendServiceImpl extends ServiceImpl<FriendMapper, Friend>
                 .and(friendLambdaQueryWrapper -> friendLambdaQueryWrapper.eq(Friend::getStatus, 1)));
 
         //映射所有的id
+        if (friendList.size() == 0){
+            throw new UserException(ResultCode.PARAM_IS_INVALID);
+        }
         List<Integer> friendIds = friendList.stream()
                 .filter(friend -> friend.getUser1Id().equals(friend.getUser2Id()))//过滤除自己之外的好友
                 .map(friend -> friend.getUser1Id().equals(userId) ? friend.getUser2Id() : friend.getUser1Id())//获取好友id
