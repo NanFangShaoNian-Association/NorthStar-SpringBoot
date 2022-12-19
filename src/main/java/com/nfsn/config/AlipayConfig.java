@@ -1,7 +1,10 @@
 package com.nfsn.config;
 
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -183,4 +186,36 @@ public class AlipayConfig {
                 ", logPath='" + logPath + '\'' +
                 '}';
     }
+
+    /**
+     * 获取 AlipayClient
+     * @return AlipayClient
+     */
+    @Bean("alipayClient")
+    public AlipayClient getAlipayClient(){
+        String serverUrl = getGatewayUrl();
+        String appId = getAppId();
+        String privateKey = getPrivateKey();
+        String format = "json";
+        String charset = getCharset();
+        String alipayPublicKey = getPublicKey();
+        String signType = getSignType();
+        return new DefaultAlipayClient(serverUrl, appId, privateKey, format, charset, alipayPublicKey, signType);
+    }
+
+//    /**
+//     * 获取 AlipayClient
+//     * @return AlipayClient
+//     */
+//    @Bean("alipayClient")
+//    public AlipayClient getAlipayClient(){
+//        String serverUrl = alipayConfig.getGatewayUrl();
+//        String appId = alipayConfig.getAppId();
+//        String privateKey = alipayConfig.getPrivateKey();
+//        String format = "json";
+//        String charset = alipayConfig.getCharset();
+//        String alipayPublicKey = alipayConfig.getPublicKey();
+//        String signType = alipayConfig.getSignType();
+//        return new DefaultAlipayClient(serverUrl, appId, privateKey, format, charset, alipayPublicKey, signType);
+//    }
 }
