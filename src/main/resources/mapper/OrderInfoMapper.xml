@@ -6,18 +6,18 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.OrderInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
-            <result property="goods_id" column="goods_id" jdbcType="INTEGER"/>
-            <result property="merchant_id" column="merchant_id" jdbcType="INTEGER"/>
-            <result property="ship_address_id" column="ship_address_id" jdbcType="INTEGER"/>
-            <result property="order_no" column="order_no" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+            <result property="merchantId" column="merchant_id" jdbcType="INTEGER"/>
+            <result property="shipAddressId" column="ship_address_id" jdbcType="INTEGER"/>
+            <result property="orderNo" column="order_no" jdbcType="INTEGER"/>
             <result property="title" column="title" jdbcType="VARCHAR"/>
-            <result property="total_fee" column="total_fee" jdbcType="INTEGER"/>
-            <result property="code_url" column="code_url" jdbcType="VARCHAR"/>
-            <result property="order_status" column="order_status" jdbcType="INTEGER"/>
-            <result property="order_remark" column="order_remark" jdbcType="VARCHAR"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="totalFee" column="total_fee" jdbcType="INTEGER"/>
+            <result property="codeUrl" column="code_url" jdbcType="VARCHAR"/>
+            <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
+            <result property="orderRemark" column="order_remark" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

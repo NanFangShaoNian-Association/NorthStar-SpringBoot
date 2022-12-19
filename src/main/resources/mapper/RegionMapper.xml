@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Region">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="city_id" column="city_id" jdbcType="INTEGER"/>
+            <result property="cityId" column="city_id" jdbcType="INTEGER"/>
             <result property="region" column="region" jdbcType="VARCHAR"/>
     </resultMap>
 

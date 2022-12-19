@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.City">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="province_id" column="province_id" jdbcType="INTEGER"/>
-            <result property="city_name" column="city_name" jdbcType="VARCHAR"/>
+            <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+            <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

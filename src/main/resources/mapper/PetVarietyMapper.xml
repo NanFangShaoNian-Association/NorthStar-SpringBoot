@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.PetVariety">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="pet_variety_name" column="pet_variety_name" jdbcType="VARCHAR"/>
+            <result property="petVarietyName" column="pet_variety_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

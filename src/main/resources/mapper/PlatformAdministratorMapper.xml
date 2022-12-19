@@ -6,12 +6,12 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.PlatformAdministrator">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_name" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
             <result property="account" column="account" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>
             <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
-            <result property="registration_time" column="registration_time" jdbcType="TIMESTAMP"/>
-            <result property="login_time" column="login_time" jdbcType="TIMESTAMP"/>
+            <result property="registrationTime" column="registration_time" jdbcType="TIMESTAMP"/>
+            <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

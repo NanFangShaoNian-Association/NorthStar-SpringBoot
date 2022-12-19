@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Province">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="province_name" column="province_name" jdbcType="VARCHAR"/>
+            <result property="provinceName" column="province_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

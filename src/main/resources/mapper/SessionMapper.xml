@@ -6,11 +6,11 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Session">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user1_id" column="user1_id" jdbcType="INTEGER"/>
-            <result property="user2_id" column="user2_id" jdbcType="INTEGER"/>
-            <result property="last_content" column="last_content" jdbcType="VARCHAR"/>
-            <result property="last_content_type" column="last_content_type" jdbcType="TINYINT"/>
-            <result property="last_content_time" column="last_content_time" jdbcType="TIMESTAMP"/>
+            <result property="user1Id" column="user1_id" jdbcType="INTEGER"/>
+            <result property="user2Id" column="user2_id" jdbcType="INTEGER"/>
+            <result property="lastContent" column="last_content" jdbcType="VARCHAR"/>
+            <result property="lastContentType" column="last_content_type" jdbcType="TINYINT"/>
+            <result property="lastContentTime" column="last_content_time" jdbcType="TIMESTAMP"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
     </resultMap>
 

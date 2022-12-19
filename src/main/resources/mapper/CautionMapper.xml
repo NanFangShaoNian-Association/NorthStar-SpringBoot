@@ -6,11 +6,11 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Caution">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="pet_id" column="pet_id" jdbcType="INTEGER"/>
+            <result property="petId" column="pet_id" jdbcType="INTEGER"/>
             <result property="type" column="type" jdbcType="VARCHAR"/>
             <result property="time" column="time" jdbcType="TIMESTAMP"/>
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
-            <result property="caution_duration" column="caution_duration" jdbcType="INTEGER"/>
+            <result property="cautionDuration" column="caution_duration" jdbcType="INTEGER"/>
             <result property="finished" column="finished" jdbcType="TINYINT"/>
     </resultMap>
 

@@ -6,14 +6,14 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MerchantComment">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="goods_id" column="goods_id" jdbcType="INTEGER"/>
-            <result property="reviewer_id" column="reviewer_id" jdbcType="INTEGER"/>
-            <result property="replier_id" column="replier_id" jdbcType="INTEGER"/>
+            <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+            <result property="reviewerId" column="reviewer_id" jdbcType="INTEGER"/>
+            <result property="replierId" column="replier_id" jdbcType="INTEGER"/>
             <result property="type" column="type" jdbcType="TINYINT"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
-            <result property="is_read" column="is_read" jdbcType="TINYINT"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isRead" column="is_read" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

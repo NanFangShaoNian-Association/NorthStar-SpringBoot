@@ -6,15 +6,15 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.Address">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
-            <result property="province_id" column="province_id" jdbcType="INTEGER"/>
-            <result property="city_id" column="city_id" jdbcType="INTEGER"/>
-            <result property="region_id" column="region_id" jdbcType="INTEGER"/>
-            <result property="detail_address" column="detail_address" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+            <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+            <result property="regionId" column="region_id" jdbcType="INTEGER"/>
+            <result property="detailAddress" column="detail_address" jdbcType="VARCHAR"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
-            <result property="is_default" column="is_default" jdbcType="TINYINT"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isDefault" column="is_default" jdbcType="TINYINT"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

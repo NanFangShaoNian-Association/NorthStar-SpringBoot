@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MerchantImages">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="merchant_id" column="merchant_id" jdbcType="INTEGER"/>
-            <result property="image_url" column="image_url" jdbcType="VARCHAR"/>
+            <result property="merchantId" column="merchant_id" jdbcType="INTEGER"/>
+            <result property="imageUrl" column="image_url" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
