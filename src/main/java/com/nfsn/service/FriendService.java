@@ -2,6 +2,9 @@ package com.nfsn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.Friend;
+import com.nfsn.model.vo.UserListVO;
+
+import java.util.List;
 
 /**
 * @author Tuanzi
@@ -10,4 +13,5 @@ import com.nfsn.model.entity.Friend;
 */
 public interface FriendService extends IService<Friend> {
 
+    List<UserListVO> listFriend(Integer userId);
 }
