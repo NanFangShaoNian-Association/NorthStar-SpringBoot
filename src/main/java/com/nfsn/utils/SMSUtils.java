@@ -46,12 +46,11 @@ public class SMSUtils {
         return code;
     }
     
-    // 发送验证码之后，返回验证码
-    public String sendCode(String phoneNumber) throws Exception{
+    // 发送验证码
+    public void sendCode(String phoneNumber, String code) throws Exception{
         //这里的accessKeyId需要我们填入刚刚添加的AccessKey的账号，后面那个参数为密码
         Client client = SMSUtils.createClient(accessKeyId, accessKeySecret);
         // 查看发送信息
-        String code = smsCode();
         log.info("code = "+code);
         String msg = "{\"code\":\"" + code + "\"}";
         log.info("msg = "+msg);
@@ -82,7 +81,6 @@ public class SMSUtils {
             // 如有需要，请打印 error
             Common.assertAsString(error.message);
         }
-        return code;
     }
 
 }

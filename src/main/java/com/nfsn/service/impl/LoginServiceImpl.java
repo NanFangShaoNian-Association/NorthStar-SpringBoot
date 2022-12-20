@@ -60,7 +60,7 @@ public class LoginServiceImpl {
 
         try {
             //发送逻辑
-            aliyunCode.sendCode(phone);
+            aliyunCode.sendCode(phone,verifyCode);
             log.info("目标手机号：{}，验证码：{}发送成功",phone,verifyCode);
         } catch (Exception e) {
             e.printStackTrace();
