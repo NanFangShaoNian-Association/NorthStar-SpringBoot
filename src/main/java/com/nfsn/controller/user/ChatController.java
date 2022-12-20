@@ -55,17 +55,17 @@ public class ChatController {
     private static CacheClient cacheClient;
 
     @Autowired
-    public static void setUserService(UserService userService) {
-        ChatController.userService = userService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Autowired
-    public static void setFriendService(FriendService friendService) {
+    public void setFriendService(FriendService friendService) {
         ChatController.friendService = friendService;
     }
 
     @Autowired
-    public static void setCacheClient(CacheClient cacheClient) {
+    public void setCacheClient(CacheClient cacheClient) {
         ChatController.cacheClient = cacheClient;
     }
 
@@ -74,7 +74,7 @@ public class ChatController {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") Integer userId) {
-
+        log.info("user:{}已连接",userId);
         map.put(userId, session);
 
         //加入set中
@@ -218,7 +218,7 @@ public class ChatController {
                 .and(chain -> chain.eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId()))
                 .or()
                 .and(chain -> chain.eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId())));
-        if (friend != null) {
+        if (friend == null) {
             //无效操作
             log.error("无效操作：当前用户和发送用户不是好友");
             return false;

@@ -19,5 +19,6 @@ public class Message {
     private String fromId;
     private String toId;
     private String type;//消息类型："apply-friend"申请好友，"friend-message"：好友消息，"delete-friend：""删除好友"
+    private String content;//内容
     private Date time;//发送时间
 }

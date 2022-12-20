@@ -19,6 +19,7 @@ public class RedisMessageData{
     private String fromId;
     private String toId;
     private String type;//消息类型："apply-friend"申请好友，"friend-message"：好友消息，"delete-friend：""删除好友"
+    private String content;
     private Date time;//发送时间
     private Integer isAck;//是否接收到消息："0未接收"，"1接收"
 }
