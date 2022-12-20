@@ -106,6 +106,7 @@ implements AddressService{
         List<Province> provinces = provinceService.list();
         List<City> cities = cityService.list();
         List<Region> regions = regionService.list();
+        //todo：删除place字段，省市区字段，全部并入address
         StringBuilder place = new StringBuilder();
         //查找省市区信息
         for (int i = 0; i < provinces.size(); i++) {

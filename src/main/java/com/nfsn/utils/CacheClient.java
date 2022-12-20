@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -42,6 +43,37 @@ public class CacheClient {
         redisData.setExpireTime(LocalDateTime.now().plusSeconds(unit.toSeconds(time)));
         // 写入Redis
         stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData));
+    }
+
+    /**
+     * 向list的末尾插入一条数据
+     *
+     * @param key   键
+     * @param value 值
+     */
+    public Long listRightPush(String key, String value) {
+        return stringRedisTemplate.opsForList().rightPush(key, value);
+    }
+
+    /**
+     * 向list末尾添加list数据
+     *
+     * @param key   键
+     * @param value 值
+     */
+    public Long listRightPushAll(String key, List<String> value) {
+        return stringRedisTemplate.opsForList().rightPushAll(key, value);
+    }
+
+    /**
+     * 通过索引获取list中的元素
+     *
+     * @param key   键
+     * @param index 索引（index>=0时，0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推）
+     * @return 列表中的元素
+     */
+    public Object listIndex(String key, long index) {
+        return stringRedisTemplate.opsForList().index(key, index);
     }
 
     public <R,ID> R queryWithPassThrough(
