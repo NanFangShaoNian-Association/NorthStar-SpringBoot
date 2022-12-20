@@ -77,7 +77,7 @@ public class UserAddressServiceImpl {
         address.setUpdateTime(new Date());
         address.setCreateTime(new Date());
 
-        addressService.save(address);
+        addressService.saveOrUpdate(address);
     }
 
     /**
