@@ -61,12 +61,12 @@ public class ChatController {
 
     @Autowired
     public void setFriendService(FriendService friendService) {
-        ChatController.friendService = friendService;
+        this.friendService = friendService;
     }
 
     @Autowired
     public void setCacheClient(CacheClient cacheClient) {
-        ChatController.cacheClient = cacheClient;
+        this.cacheClient = cacheClient;
     }
 
     /**
@@ -149,14 +149,14 @@ public class ChatController {
 
     private void deleteFriend(Message message) {
         friendService.remove(new LambdaQueryWrapper<Friend>()
-                .and(chain -> chain.eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId()))
+                .eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId())
                 .or()
-                .and(chain -> chain.eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId())));
+                .eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId()));
     }
 
     private void friendMessage(Message message) {
         // 判断用户是否处于在线状态
-        if (webSocketSet.get(Integer.valueOf(message.getFromId())) != null) {
+        if (webSocketSet.get(Integer.valueOf(message.getToId())) != null) {
             // 1.在线存入redis，发送
             storeData(message, 0);
             send(message);
@@ -214,10 +214,16 @@ public class ChatController {
 
     public boolean checkFriend(Message message) {
         // 2.校验是否互为好友关系
+//        Friend friend = friendService.getOne(new LambdaQueryWrapper<Friend>()
+//                .and(chain -> chain.eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId()))
+//                .or()
+//                .and(chain -> chain.eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId())));
+
         Friend friend = friendService.getOne(new LambdaQueryWrapper<Friend>()
-                .and(chain -> chain.eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId()))
+                .eq(Friend::getUser1Id, message.getFromId()).eq(Friend::getUser2Id, message.getToId())
                 .or()
-                .and(chain -> chain.eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId())));
+                .eq(Friend::getUser1Id, message.getToId()).eq(Friend::getUser2Id, message.getFromId()));
+
         if (friend == null) {
             //无效操作
             log.error("无效操作：当前用户和发送用户不是好友");
