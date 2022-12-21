@@ -6,12 +6,12 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.VideoComment">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
-            <result property="video_id" column="video_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="videoId" column="video_id" jdbcType="INTEGER"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
-            <result property="is_read" column="is_read" jdbcType="TINYINT"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isRead" column="is_read" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

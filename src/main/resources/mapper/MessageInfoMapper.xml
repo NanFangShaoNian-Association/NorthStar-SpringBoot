@@ -6,13 +6,13 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MessageInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="sender_id" column="sender_id" jdbcType="INTEGER"/>
-            <result property="receiver_id" column="receiver_id" jdbcType="INTEGER"/>
-            <result property="content_type" column="content_type" jdbcType="TINYINT"/>
+            <result property="senderId" column="sender_id" jdbcType="INTEGER"/>
+            <result property="receiverId" column="receiver_id" jdbcType="INTEGER"/>
+            <result property="contentType" column="content_type" jdbcType="TINYINT"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
-            <result property="is_read" column="is_read" jdbcType="TINYINT"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isRead" column="is_read" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

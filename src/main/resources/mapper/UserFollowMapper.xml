@@ -6,10 +6,10 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.UserFollow">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="blogger_id" column="blogger_id" jdbcType="INTEGER"/>
-            <result property="fans_id" column="fans_id" jdbcType="INTEGER"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="bloggerId" column="blogger_id" jdbcType="INTEGER"/>
+            <result property="fansId" column="fans_id" jdbcType="INTEGER"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

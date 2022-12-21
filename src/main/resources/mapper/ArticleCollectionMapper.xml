@@ -6,10 +6,10 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.ArticleCollection">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
-            <result property="article_id" column="article_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="articleId" column="article_id" jdbcType="INTEGER"/>
             <result property="deleted" column="deleted" jdbcType="TINYINT"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

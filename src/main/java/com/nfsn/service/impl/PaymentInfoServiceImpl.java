@@ -7,6 +7,7 @@ import com.nfsn.model.entity.OrderInfo;
 import com.nfsn.model.entity.PaymentInfo;
 import com.nfsn.service.OrderInfoService;
 import com.nfsn.service.PaymentInfoService;
+import com.nfsn.utils.RandomUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,6 +39,7 @@ implements PaymentInfoService{
         //封装支付信息
         PaymentInfo paymentInfo = new PaymentInfo();
         paymentInfo.setId((int) IdUtil.getSnowflake().nextId());
+        paymentInfo.setId(Integer.valueOf(RandomUtils.getRandomOfNumber(5)));
         paymentInfo.setOrderInfoId(orderInfo.getId());
 //        paymentInfo.setTransactionNo();
 //        paymentInfo.setPaymentType("alipay");

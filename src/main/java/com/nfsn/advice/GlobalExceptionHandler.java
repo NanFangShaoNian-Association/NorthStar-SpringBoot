@@ -2,10 +2,7 @@ package com.nfsn.advice;
 
 import com.nfsn.common.Result;
 import com.nfsn.constants.ResultCode;
-import com.nfsn.exception.UserArticleException;
-import com.nfsn.exception.UserLoginException;
-import com.nfsn.exception.UserPetException;
-import com.nfsn.exception.UserVideoException;
+import com.nfsn.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +19,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserLoginException.class)
     public Result userLoginExceptionHandler(HttpServletRequest req, UserLoginException e) {
         log.error("出现UserLoginException异常：",e);
+        return Result.failure(e.getResultCode(), null);
+    }
+
+    //用户异常拦截
+    @ExceptionHandler(UserException.class)
+    public Result userLoginExceptionHandler(HttpServletRequest req, UserException e) {
+        log.error("出现UserException异常：",e);
         return Result.failure(e.getResultCode(), null);
     }
 
@@ -66,6 +70,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result internalExceptionHandler(HttpServletRequest req, Exception e) {
         log.error("出现Exception异常：",e);
-        return Result.failure(ResultCode.INTERNAL_ERROR, null);
+        return new Result(ResultCode.INTERNAL_ERROR.getCode(),e.getCause().toString(), null);
     }
 }

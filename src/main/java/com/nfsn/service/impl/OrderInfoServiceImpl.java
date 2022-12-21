@@ -1,7 +1,6 @@
 package com.nfsn.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,6 +16,7 @@ import com.nfsn.model.vo.UserOrderVO;
 import com.nfsn.service.GoodsService;
 import com.nfsn.service.OrderInfoService;
 import com.nfsn.utils.AccountHolder;
+import com.nfsn.utils.RandomUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -104,10 +104,11 @@ implements OrderInfoService{
         }
         //封装订单信息
         OrderInfo orderInfo = BeanUtil.copyProperties(createOrderRequest, OrderInfo.class);
-        orderInfo.setId((int) IdUtil.getSnowflake().nextId());//雪花算法生成id
+//        orderInfo.setId((int) IdUtil.getSnowflake().nextId());//雪花算法生成id
+        orderInfo.setId(Integer.valueOf(RandomUtils.getRandomOfNumber(5)));//雪花算法生成id
         orderInfo.setUserId(AccountHolder.getUser().getId());
         orderInfo.setMerchantId(good.getMerchantId());
-        orderInfo.setOrderNo((int) IdUtil.getSnowflake().nextId());//雪花算法生成订单编号
+        orderInfo.setOrderNo((Integer.valueOf(RandomUtils.getRandomOfNumber(5))));
         orderInfo.setOrderStatus(OrderStatus.WAITING_PAID.getCode());//待支付
         orderInfo.setCreateTime(new Date());
         orderInfo.setUpdateTime(new Date());

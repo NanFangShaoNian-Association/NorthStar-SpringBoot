@@ -6,15 +6,15 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.PaymentInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="order_info_id" column="order_info_id" jdbcType="INTEGER"/>
-            <result property="transaction_no" column="transaction_no" jdbcType="VARCHAR"/>
-            <result property="payment_type" column="payment_type" jdbcType="VARCHAR"/>
-            <result property="trade_type" column="trade_type" jdbcType="VARCHAR"/>
-            <result property="trade_state" column="trade_state" jdbcType="VARCHAR"/>
-            <result property="payer_total" column="payer_total" jdbcType="INTEGER"/>
+            <result property="orderInfoId" column="order_info_id" jdbcType="INTEGER"/>
+            <result property="transactionNo" column="transaction_no" jdbcType="VARCHAR"/>
+            <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+            <result property="tradeType" column="trade_type" jdbcType="VARCHAR"/>
+            <result property="tradeState" column="trade_state" jdbcType="VARCHAR"/>
+            <result property="payerTotal" column="payer_total" jdbcType="INTEGER"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

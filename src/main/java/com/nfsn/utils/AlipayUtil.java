@@ -2,21 +2,21 @@ package com.nfsn.utils;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.*;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.nfsn.config.AlipayConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AlipayUtil {
+public class AlipayUtil implements BeanPostProcessor {
     @Autowired
     private AlipayConfig alipayConfig;
 
     @Autowired
-    private static AlipayClient alipayClient;
+    private AlipayClient alipayClient;
+
 
     /**
      * app支付接口2.0
@@ -113,19 +113,5 @@ public class AlipayUtil {
         return alipayClient.execute(alipayRequest).getBody();
     }
 
-    /**
-     * 获取 AlipayClient
-     * @return AlipayClient
-     */
-    @Bean("alipayClient")
-    public AlipayClient getAlipayClient(){
-        String serverUrl = alipayConfig.getGatewayUrl();
-        String appId = alipayConfig.getAppId();
-        String privateKey = alipayConfig.getPrivateKey();
-        String format = "json";
-        String charset = alipayConfig.getCharset();
-        String alipayPublicKey = alipayConfig.getPublicKey();
-        String signType = alipayConfig.getSignType();
-        return new DefaultAlipayClient(serverUrl, appId, privateKey, format, charset, alipayPublicKey, signType);
-    }
+
 }

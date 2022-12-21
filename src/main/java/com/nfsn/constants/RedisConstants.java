@@ -27,4 +27,8 @@ public class RedisConstants {
     public static final Long CACHE_ArticleComment_TTL = 30L;
     public static final String CACHE_ArticleComment_KEY = "cache:articlecomment:";
 
+    public static final String FRIEND_MESSAGE_KEY = "friend:msg:";
+
+
+
 }

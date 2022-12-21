@@ -41,14 +41,14 @@ public class UserAddressController {
 
     //获取省信息
     @ApiOperation("获取省信息")
-    @GetMapping("/getProvince")
+//    @GetMapping("/getProvince")
     public List<ProvinceVO> listProvince() {
         return userAddressService.listProvince();
     }
 
     //获取市信息
     @ApiOperation("获取市信息")
-    @GetMapping("/getCity/{provinceId}")
+//    @GetMapping("/getCity/{provinceId}")
     public List<CityVO> listCity(@PathVariable("provinceId") String provinceId) {
         Integer value = 0;
         try {
@@ -62,7 +62,7 @@ public class UserAddressController {
 
     //获取区信息
     @ApiOperation("获取区信息")
-    @GetMapping("/getRegion/{cityId}")
+//    @GetMapping("/getRegion/{cityId}")
     public List<RegionVO> listRegion(@PathVariable("cityId") String cityId) {
         Integer value = 0;
         try {

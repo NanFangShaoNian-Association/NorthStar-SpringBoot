@@ -9,9 +9,7 @@ import com.nfsn.model.dto.LoginRequest;
 import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.LoginVO;
 import com.nfsn.service.UserService;
-import com.nfsn.utils.CacheClient;
-import com.nfsn.utils.PhoneRegexUtils;
-import com.nfsn.utils.TokenUtil;
+import com.nfsn.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -38,6 +36,9 @@ public class LoginServiceImpl {
     @Resource
     private UserService userService;
 
+    @Resource(name = "aliyunCode")
+    private SMSUtils aliyunCode;
+
     /**
      * 根据手机号获取验证码
      * @param phone 手机号
@@ -50,14 +51,21 @@ public class LoginServiceImpl {
         }
 
         //生成随机验证码
-//        String verifyCode = RandomUtils.getRandom(RandomUtils.ALL_LETTER_AND_NUMBER, 6);
+        String verifyCode = RandomUtils.getRandom(RandomUtils.ALL_NUMBER, 6);
         //固定验证码
-        String verifyCode = "A1b2c3";
+//        String verifyCode = "A1b2c3";
         //存储5分钟
         cacheClient.setWithLogicalExpire(LOGIN_CODE_KEY+phone,verifyCode,LOGIN_CODE_TTL, TimeUnit.MINUTES);
         log.info("目标手机号：{}，验证码：{}存储成功",phone,verifyCode);
-        //todo:发送逻辑
-        log.info("目标手机号：{}，验证码：{}发送成功",phone,verifyCode);
+
+        try {
+            //发送逻辑
+            aliyunCode.sendCode(phone,verifyCode);
+            log.info("目标手机号：{}，验证码：{}发送成功",phone,verifyCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

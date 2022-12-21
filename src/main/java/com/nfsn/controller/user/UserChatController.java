@@ -1,6 +1,7 @@
 package com.nfsn.controller.user;
 
 import com.nfsn.model.vo.UserListVO;
+import com.nfsn.service.FriendService;
 import com.nfsn.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -27,13 +28,16 @@ public class UserChatController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private FriendService friendService;
+
     @GetMapping("/list/{userId}")
     @ApiImplicitParams(
             @ApiImplicitParam(paramType = "header", name = "Authorization", value = "用户令牌", dataType = "String", required = true)
     )
     @ApiOperation("获取好友列表")
     public List<UserListVO> list(@PathVariable("userId") String userId){
-        return null;
+        return friendService.listFriend();
     }
 
 //    //获取好友信息

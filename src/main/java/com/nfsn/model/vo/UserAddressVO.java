@@ -36,34 +36,10 @@ public class UserAddressVO implements Serializable {
     private String phoneNumber;
 
     /**
-     * 所在地区（省、市、区），填写示例：广东省-广州市-黄埔区
-     */
-    @ApiModelProperty("所在地区（省、市、区），填写示例：广东省-广州市-黄埔区")
-    private String place;
-
-    /**
-     * 省ID
-     */
-    @ApiModelProperty("省ID")
-    private Integer provinceId;
-
-    /**
-     * 市ID
-     */
-    @ApiModelProperty("市ID")
-    private Integer cityId;
-
-    /**
-     * 区ID
-     */
-    @ApiModelProperty("区ID")
-    private Integer regionId;
-
-    /**
      * 详细地址
      */
     @ApiModelProperty("详细地址")
-    private String address;
+    private String detailAddress;
 
     /**
      * 是否为默认地址

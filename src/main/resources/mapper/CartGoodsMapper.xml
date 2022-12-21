@@ -6,9 +6,9 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.CartGoods">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
-            <result property="goods_id" column="goods_id" jdbcType="INTEGER"/>
-            <result property="goods_quantity" column="goods_quantity" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+            <result property="goodsQuantity" column="goods_quantity" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">

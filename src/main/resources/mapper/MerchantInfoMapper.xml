@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.nfsn.model.entity.MerchantInfo">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="detail_content" column="detail_content" jdbcType="VARCHAR"/>
+            <result property="detailContent" column="detail_content" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
