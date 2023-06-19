@@ -1,12 +1,10 @@
 package com.nfsn.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @ClassName: LoginRequest
@@ -42,13 +40,6 @@ public class LoginRequest implements Serializable {
      */
     @ApiModelProperty("验证码")
     private String verifyCode;
-
-    /**
-     * 登陆时间
-     */
-    @ApiModelProperty("登陆时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date loginTime;
 
     /**
      * 角色（用户手机号0，用户微信1，用户QQ登录2，商家3，平台管理员4），默认为0

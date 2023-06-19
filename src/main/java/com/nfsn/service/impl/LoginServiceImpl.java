@@ -86,7 +86,7 @@ public class LoginServiceImpl {
         }
 
         //校验用户手机号是否存在
-        User user = userService.getUserByPhone(loginRequest.getPhone(), loginRequest.getLoginTime());
+        User user = userService.getUserByPhone(loginRequest.getPhone());
 
         //生成登录token
         Map<String, Object> map = MapUtil.of("role", "user");
