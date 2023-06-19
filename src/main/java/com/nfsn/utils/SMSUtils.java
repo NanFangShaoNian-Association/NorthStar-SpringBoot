@@ -23,8 +23,8 @@ public class SMSUtils {
      * @throws Exception
      */
     // 这里填写网站获取的accessKey
-    static String accessKeyId = "LTAI5tFW5KbJ5rwYeAuehXc8";
-    static String accessKeySecret = "lfNoMzEQyrshAYmxPrnfHzoOZ4WjV9";
+    static String accessKeyId = "abcdefgihjklmnopqrstuvwxyz";
+    static String accessKeySecret = "abcdefgihjklmnopqrstuvwxyz";
 
     public static Client createClient(String accessKeyId, String accessKeySecret) throws Exception {
         Config config = new Config()

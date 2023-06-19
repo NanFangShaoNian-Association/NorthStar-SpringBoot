@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.nfsn.model.entity.User;
 import com.nfsn.model.vo.UserListVO;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ public interface UserService extends IService<User> {
      * @param phone 手机号
      * @return 用户信息
      */
-    User getUserByPhone(String phone, Date loginTime);
+    User getUserByPhone(String phone);
 
     String getUserNameById(Integer userId);
 

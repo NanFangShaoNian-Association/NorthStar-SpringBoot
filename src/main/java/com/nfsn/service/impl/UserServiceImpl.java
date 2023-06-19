@@ -33,7 +33,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @return 用户信息
      */
     @Override
-    public User getUserByPhone(String phone, Date loginTime) {
+    public User getUserByPhone(String phone) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getPhone, phone);
         User user = this.getOne(queryWrapper);
@@ -45,7 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             insertUser.setAvatar(getDefaultAvatar());
             insertUser.setGender(getDefaultGender());
             insertUser.setIntroduction(getDefaultIntroduction());
-            insertUser.setRegistrationTime(loginTime);
+            insertUser.setRegistrationTime(new Date());
 
             this.save(insertUser);
 
